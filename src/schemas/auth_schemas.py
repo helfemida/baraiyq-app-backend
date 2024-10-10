@@ -11,5 +11,11 @@ class SignUpRequest(BaseModel):
     password: str
 
 
+class SignInEmailRequest(BaseModel):
+    email: str
+    password: str
 
-    
+
+class SignInPhoneRequest(BaseModel):
+    phone: str
+    password: str

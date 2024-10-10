@@ -11,7 +11,4 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
-
-
-app.include_router(patient.router, prefix="/clients", tags=["client"])
-
+app.include_router(client.router, prefix="/clients", tags=["client"])

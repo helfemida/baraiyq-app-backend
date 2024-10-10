@@ -1,7 +1,8 @@
-POSTGRES_USER = "postgres"
+POSTGRES_USER = "axxermekya.ru"
 POSTGRES_PASSWORD = "postgres123"
-POSTGRES_DB = "hpms_clients"
-POSTGRES_HOST = "db"  
+POSTGRES_DB = "baraiyq"
+POSTGRES_HOST = "localhost"
 
-# DATABASE_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}/{POSTGRES_DB}"
-DATABASE_URL = "sqlite:///./clients.db"
+
+DATABASE_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}/{POSTGRES_DB}"
+

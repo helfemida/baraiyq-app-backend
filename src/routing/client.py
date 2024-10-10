@@ -1,24 +1,28 @@
-from fastapi import APIRouter, Depends, FastAPI
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from src.database import get_db
-from fastapi.responses import JSONResponse
-from src.services.auth_service import authenticate_patient, verify_signup
+
+from src.schemas.auth_schemas import SignUpRequest
+from src.services.auth_service import authenticate_client_phone, verify_signup
+from src.schemas.auth_schemas import SignInEmailRequest, SignInPhoneRequest
 router = APIRouter()
 
-@router.post("/auth/sign-up")
+
+@router.post("/auth/sign-up/")
 def signup(request: SignUpRequest, db: Session = Depends(get_db)):
-    #add_client
-    return JSONResponse(
-        content={"message": "Signup successful"},
-        headers={"Auth": token}
-    )
+
+    return verify_signup(db, request)
 
 
-@router.post("/auth/sign-in")
-def login_patient(request: SignInRequest, db: Session = Depends(get_db)):
-    token = authenticate_patient(db, request)
-    return JSONResponse(
-        content={"message": "Login successful"},
-        headers={"Auth": token},
-        status_code=200
-    )
+@router.post("/auth/sign-in/phone/")
+def login_client(request: SignInPhoneRequest, db: Session = Depends(get_db)):
+    token = authenticate_client_phone(db, request.phone, request.password)
+    return {"message": "Login successful",
+            "Auth": token}
+
+
+@router.post("/auth/sign-in/email/")
+def login_client(request: SignInEmailRequest, db: Session = Depends(get_db)):
+    token = authenticate_client_phone(db, request.email, request.password)
+    return {"message": "Login successful",
+            "Auth": token}
