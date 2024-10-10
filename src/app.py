@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from src.routing import patient
+from src.routing import client
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -13,5 +13,5 @@ app.add_middleware(
 
 
 
-app.include_router(patient.router, prefix="/user", tags=["patient"])
+app.include_router(patient.router, prefix="/clients", tags=["client"])
 

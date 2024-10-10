@@ -2,19 +2,17 @@ from fastapi import HTTPException
 from random import randint
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
-from src.models import Patient
+from src.models import Client
 from src.utils.security import create_access_token, verify_password
-from src.repositories.patients import get_patient_by_email
+from src.repositories.clients import get_client_by_email
 from src.utils.jwt import ACCESS_TOKEN_EXPIRE_MINUTES
 from datetime import timedelta
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-def send_verification_code(email: str):
-    verification_code = randint(100000, 999999)
-    return verification_code
+def verify_signup(db: Session, client_data, verification_code):
+    client = get_client_by_email(db=db, email=client_data['email'])
 
-def verify_signup(db: Session, signup_data, verification_code):
     if verification_code == signup_data.emailVerificationCode:
         hashed_password = pwd_context.hash(signup_data.password)
         patient = Patient(
@@ -33,9 +31,10 @@ def verify_signup(db: Session, signup_data, verification_code):
         return {"message": "Patient registered successfully", "patient_id": patient.id}
     raise HTTPException(status_code=400, detail="Invalid verification code")
 
-def authenticate_patient(db: Session, patient):
+
+def authenticate_client(db: Session, client):
     
-    db_patient = get_patient_by_email(db, patient.email)
+    db_patient = get_client_by_email(db, client.email)
     if not db_patient:
         raise HTTPException(status_code=400, detail="Invalid email or password")
 
