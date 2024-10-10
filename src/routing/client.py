@@ -10,7 +10,6 @@ router = APIRouter()
 
 @router.post("/auth/sign-up/")
 def signup(request: SignUpRequest, db: Session = Depends(get_db)):
-
     return verify_signup(db, request)
 
 

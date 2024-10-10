@@ -35,12 +35,10 @@ def verify_signup(db: Session, signup_data: SignUpRequest):
         surname=signup_data.surname,
         email=signup_data.email,
         phone=signup_data.phone,
-
         date_of_birth=signup_data.date_of_birth,
         password=hashed_password
     )
 
-    print(client)
     db.add(client)
     db.commit()
     db.refresh(client)
@@ -57,7 +55,7 @@ def authenticate_client(db: Session, email: str, password: str):
         raise HTTPException(status_code=400, detail="Invalid email or password")
 
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    access_token = create_access_token(data={"sub": db_client.id}, expires_delta=access_token_expires)
+    access_token = create_access_token(user_id=db_client.id, expires_delta=access_token_expires)
 
     return {"access_token": access_token, "token_type": "bearer"}
 
@@ -71,6 +69,6 @@ def authenticate_client_phone(db: Session, phone: str, password: str):
         raise HTTPException(status_code=400, detail="Invalid email or password")
 
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    access_token = create_access_token(data={"sub": db_client.id}, expires_delta=access_token_expires)
+    access_token = create_access_token(db=db, user_id=db_client.id, expires_delta=access_token_expires)
 
     return {"access_token": access_token, "token_type": "bearer"}
