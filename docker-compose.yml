@@ -2,12 +2,13 @@ version: '3.8'
 
 services:
   backend:
-    image: tiangolo/uvicorn-gunicorn-fastapi:python3.9
+    image: demisto/fastapi:0.115.0.113380
     container_name: fastapi_app
     restart: always
     build:
       context: ./baraiyq-app-backend
       dockerfile: Dockerfile
+    platform: linux/amd64
     volumes:
       - ./baraiyq-app-backend:/app
     env_file:
@@ -27,19 +28,6 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
-    networks:
-      - app-network
-
-  nginx:
-    image: nginx:latest
-    container_name: nginx_proxy
-    restart: always
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - backend
     networks:
       - app-network
 
