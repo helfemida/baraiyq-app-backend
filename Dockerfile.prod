@@ -1,0 +1,19 @@
+FROM python:3.12
+
+ENV PYTHONUNBUFFERED True
+
+ENV HOST 0.0.0.0
+
+ENV PORT 8080
+
+WORKDIR /usr/src/app
+
+COPY ./requirements.txt ./
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY ./src ./src
+
+EXPOSE 8080
+
+CMD ["uvicorn", "src.app:app", "--host", "0.0.0.0", "--port", "8080", "--proxy-headers"]
