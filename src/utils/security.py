@@ -30,6 +30,6 @@ def create_access_token(db: Session, user_id: int, expires_delta: timedelta = No
          "surname": user_info.surname,
          "email": user_info.email,
          "phone": user_info.phone,
-         "date_of_birth": user_info.date_of_birth})
+         "date_of_birth": str(user_info.date_of_birth)})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt

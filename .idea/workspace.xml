@@ -7,15 +7,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19ca0b5d-19bb-4c93-b744-fdf2e1d67ddb" name="Changes" comment="nginx ports changed to 8080">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/017c19c7-34f0-4584-b326-cd49815a4f2c.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/017c19c7-34f0-4584-b326-cd49815a4f2c/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/520e80b1-381f-44e5-b273-c831d0fa6ff9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/520e80b1-381f-44e5-b273-c831d0fa6ff9/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/83a2e3ec-9952-4a78-8f99-3c5d4373de0f.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/83a2e3ec-9952-4a78-8f99-3c5d4373de0f/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+    <list default="true" id="19ca0b5d-19bb-4c93-b744-fdf2e1d67ddb" name="Changes" comment="prod deploy version">
+      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/client_auth_tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/auth_schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/auth_schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/auth_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/auth_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/security.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/security.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +28,7 @@
       <list>
         <option value="FastAPI main" />
         <option value="FastAPI test_main" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -64,6 +66,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -106,7 +109,8 @@
       <workItem from="1728555145343" duration="3558000" />
       <workItem from="1728558874318" duration="16944000" />
       <workItem from="1728621844543" duration="16099000" />
-      <workItem from="1728990008178" duration="1747000" />
+      <workItem from="1728990008178" duration="12411000" />
+      <workItem from="1729021918145" duration="9557000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -172,7 +176,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728634603065</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="prod deploy version">
+      <option name="closed" value="true" />
+      <created>1728991901739</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1728991901739</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,6 +212,7 @@
     <MESSAGE value="containerization added" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/dataSources/320543aa-2cc9-4ead-9002-710b4c76b123.xml&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="nginx ports changed to 8080" />
-    <option name="LAST_COMMIT_MESSAGE" value="nginx ports changed to 8080" />
+    <MESSAGE value="prod deploy version" />
+    <option name="LAST_COMMIT_MESSAGE" value="prod deploy version" />
   </component>
 </project>

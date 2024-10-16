@@ -46,7 +46,7 @@ def verify_signup(db: Session, signup_data: SignUpRequest):
     return {"message": "Client registered successfully", "client_id": client.id}
 
 
-def authenticate_client(db: Session, email: str, password: str):
+def authenticate_client_email(db: Session, email: str, password: str):
     db_client = get_client_by_email(db, email)
     if not db_client:
         raise HTTPException(status_code=400, detail="no such email.")
@@ -55,7 +55,7 @@ def authenticate_client(db: Session, email: str, password: str):
         raise HTTPException(status_code=400, detail="Invalid email or password")
 
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    access_token = create_access_token(user_id=db_client.id, expires_delta=access_token_expires)
+    access_token = create_access_token(db=db, user_id=db_client.id, expires_delta=access_token_expires)
 
     return {"access_token": access_token, "token_type": "bearer"}
 
