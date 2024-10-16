@@ -16,13 +16,11 @@ def signup(request: SignUpRequest, db: Session = Depends(get_db)):
     return verify_signup(db, request)
 
 
-
 @router.post("/auth/sign-in/phone/")
 def login_client_phone(request: SignInPhoneRequest, db: Session = Depends(get_db)):
     token = authenticate_client_phone(db, request.phone, request.password)
     headers = {"Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE"}
     content = {"message": "Login successful", "Auth": token}
-
     return JSONResponse(content=content, headers=headers)
 
 
@@ -31,5 +29,4 @@ def login_client_email(request: SignInEmailRequest, db: Session = Depends(get_db
     token = authenticate_client_email(db, request.email, request.password)
     headers = {"Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE"}
     content = {"message": "Login successful", "Auth": token}
-
     return JSONResponse(content=content, headers=headers)

@@ -12,13 +12,6 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 def verify_signup(db: Session, signup_data: SignUpRequest):
-    print(signup_data.name)
-    print(signup_data.surname)
-    print(signup_data.email)
-    print(signup_data.phone)
-    print(signup_data.password)
-    print(signup_data.date_of_birth)
-
     existing_client_by_email = get_client_by_email(db, email=signup_data.email)
     if existing_client_by_email:
         raise HTTPException(status_code=400, detail="Email already registered")
@@ -42,7 +35,7 @@ def verify_signup(db: Session, signup_data: SignUpRequest):
     db.commit()
     db.refresh(client)
 
-    return {"message": "Client registered successfully", "client_id": client.id}
+    return create_access_token(db=db, user_id=client.id, expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
 
 
 def authenticate_client_email(db: Session, email: str, password: str):
@@ -56,7 +49,7 @@ def authenticate_client_email(db: Session, email: str, password: str):
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(db=db, user_id=db_client.id, expires_delta=access_token_expires)
 
-    return {"access_token": access_token, "token_type": "bearer"}
+    return {"access_token": access_token}
 
 
 def authenticate_client_phone(db: Session, phone: str, password: str):
@@ -70,4 +63,4 @@ def authenticate_client_phone(db: Session, phone: str, password: str):
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(db=db, user_id=db_client.id, expires_delta=access_token_expires)
 
-    return {"access_token": access_token, "token_type": "bearer"}
+    return {"access_token": access_token}
