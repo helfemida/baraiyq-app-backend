@@ -1,3 +1,6 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+  logsBucket: "gs://cloud_logs_1"
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-f', 'Dockerfile.prod', '-t', 'us-central1-docker.pkg.dev/baraiyq-app-438307/baraiyq-backend/baraiyq-backend:0.0.3', '--no-cache', '.']

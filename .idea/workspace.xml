@@ -7,14 +7,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19ca0b5d-19bb-4c93-b744-fdf2e1d67ddb" name="Changes" comment="json serialization problem solved again">
+    <list default="true" id="19ca0b5d-19bb-4c93-b744-fdf2e1d67ddb" name="Changes" comment="aksjdhkasjdha">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudbuild.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cloudbuild.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repositories/clients.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/clients.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routing/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/auth_schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/auth_schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/auth_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/auth_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_main.http" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +104,7 @@
       <workItem from="1728990008178" duration="12411000" />
       <workItem from="1729021918145" duration="16875000" />
       <workItem from="1729094725659" duration="2833000" />
-      <workItem from="1729101131718" duration="1051000" />
+      <workItem from="1729101131718" duration="1978000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -200,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729089358498</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="aksjdhkasjdha">
+      <option name="closed" value="true" />
+      <created>1729103487279</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1729103487279</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,6 +233,7 @@
     <MESSAGE value="prod deploy version" />
     <MESSAGE value="json serialization problem solved" />
     <MESSAGE value="json serialization problem solved again" />
-    <option name="LAST_COMMIT_MESSAGE" value="json serialization problem solved again" />
+    <MESSAGE value="aksjdhkasjdha" />
+    <option name="LAST_COMMIT_MESSAGE" value="aksjdhkasjdha" />
   </component>
 </project>
