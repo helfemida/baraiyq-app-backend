@@ -7,8 +7,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19ca0b5d-19bb-4c93-b744-fdf2e1d67ddb" name="Changes" comment="aksjdhkasjdha">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="19ca0b5d-19bb-4c93-b744-fdf2e1d67ddb" name="Changes" comment="cloudbuild.yaml">
+      <change beforePath="$PROJECT_DIR$/cloudbuild.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cloudbuild.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +104,7 @@
       <workItem from="1728990008178" duration="12411000" />
       <workItem from="1729021918145" duration="16875000" />
       <workItem from="1729094725659" duration="2833000" />
-      <workItem from="1729101131718" duration="1978000" />
+      <workItem from="1729101131718" duration="2297000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -202,7 +202,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729103487279</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="cloudbuild.yaml">
+      <option name="closed" value="true" />
+      <created>1729104790016</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1729104790016</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,6 +242,7 @@
     <MESSAGE value="json serialization problem solved" />
     <MESSAGE value="json serialization problem solved again" />
     <MESSAGE value="aksjdhkasjdha" />
-    <option name="LAST_COMMIT_MESSAGE" value="aksjdhkasjdha" />
+    <MESSAGE value="cloudbuild.yaml" />
+    <option name="LAST_COMMIT_MESSAGE" value="cloudbuild.yaml" />
   </component>
 </project>
