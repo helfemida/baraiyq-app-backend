@@ -13,7 +13,8 @@ router = APIRouter()
 
 @router.post("/auth/sign-up/")
 def signup(request: SignUpRequest, db: Session = Depends(get_db)):
-    return verify_signup(db, request)
+    content = {"message": "Signup successful", "token": verify_signup(db, request)}
+    return JSONResponse(content=content)
 
 
 @router.post("/auth/sign-in/phone/")
