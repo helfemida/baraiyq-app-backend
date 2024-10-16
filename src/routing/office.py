@@ -8,7 +8,8 @@ from src.services.office_service import get_available_offices
 
 router = APIRouter()
 
-@router.get("/offices/", response_model=list[OfficeResponse])
-def read_offices(db: Session = Depends(get_db)):
+
+@router.get("/offices/")
+def read_offices(db: Session = Depends(get_db)) -> list[OfficeResponse]:
     offices = get_available_offices(db)
     return offices

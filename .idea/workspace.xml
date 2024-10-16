@@ -7,8 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19ca0b5d-19bb-4c93-b744-fdf2e1d67ddb" name="Changes" comment="nginx ports changed to 8080">
+    <list default="true" id="19ca0b5d-19bb-4c93-b744-fdf2e1d67ddb" name="Changes" comment="auth message changed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/office.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/office.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,25 +28,8 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;shynkaaaa&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/helfemida/baraiyq-app-backend.git&quot;,
-    &quot;accountId&quot;: &quot;2aea7f0a-66ff-4430-97b7-20815ebb1a0b&quot;
-  }
-}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -56,40 +42,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;FastAPI.baraiyq-app-backend.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/axxermekya.ru/PyCharmProjects/baraiyq-app-backend&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "ss",
+    "last_opened_file_path": "/Users/axxermekya.ru/PyCharmProjects/baraiyq-app-backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="baraiyq-app-backend" type="Python.FastAPI">
-      <option name="file" value="$PROJECT_DIR$/src/app.py" />
+      <option name="file" value="$PROJECT_DIR$/main.py" />
       <module name="baraiyq-app-backend" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="$PROJECT_DIR$/../test/.venv/Scripts/python.exe" />
-      <option name="SDK_NAME" value="Python 3.12 (test)" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -102,8 +86,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-PY-242.21829.153" />
-        <option value="bundled-python-sdk-464836ebc622-b74155a9e76b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.21829.153" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.17011.127" />
+        <option value="bundled-python-sdk-48aec45f0201-7e9c3bbb6e34-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.17011.127" />
       </set>
     </attachedChunks>
   </component>
@@ -120,9 +104,10 @@
       <workItem from="1728555145343" duration="3558000" />
       <workItem from="1728558874318" duration="16944000" />
       <workItem from="1728621844543" duration="16099000" />
-      <workItem from="1728990008178" duration="1747000" />
-      <workItem from="1729012004816" duration="3697000" />
-      <workItem from="1729091336363" duration="9721000" />
+      <workItem from="1728990008178" duration="12411000" />
+      <workItem from="1729021918145" duration="16875000" />
+      <workItem from="1729094725659" duration="2833000" />
+      <workItem from="1729101131718" duration="7362000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -188,15 +173,95 @@
       <option name="project" value="LOCAL" />
       <updated>1728634603065</updated>
     </task>
-    <task id="LOCAL-00009" summary="nginx ports changed to 8080">
+    <task id="LOCAL-00009" summary="prod deploy version">
       <option name="closed" value="true" />
-      <created>1729107038496</created>
+      <created>1728991901739</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1729107038497</updated>
+      <updated>1728991901739</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="json serialization problem solved">
+      <option name="closed" value="true" />
+      <created>1729072516328</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1729072516328</updated>
+    </task>
+    <task id="LOCAL-00011" summary="json serialization problem solved again">
+      <option name="closed" value="true" />
+      <created>1729089358498</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1729089358498</updated>
+    </task>
+    <task id="LOCAL-00012" summary="aksjdhkasjdha">
+      <option name="closed" value="true" />
+      <created>1729103487279</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1729103487279</updated>
+    </task>
+    <task id="LOCAL-00013" summary="cloudbuild.yaml">
+      <option name="closed" value="true" />
+      <created>1729104790016</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1729104790016</updated>
+    </task>
+    <task id="LOCAL-00014" summary="cloudbuild.yaml">
+      <option name="closed" value="true" />
+      <created>1729104863565</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1729104863565</updated>
+    </task>
+    <task id="LOCAL-00015" summary="cloudbuild.yaml">
+      <option name="closed" value="true" />
+      <created>1729104935057</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1729104935057</updated>
+    </task>
+    <task id="LOCAL-00016" summary="cloudbuild.yaml">
+      <option name="closed" value="true" />
+      <created>1729105532868</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1729105532869</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <option name="closed" value="true" />
+      <created>1729105568390</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1729105568390</updated>
+    </task>
+    <task id="LOCAL-00018" summary="aksjnskndjs">
+      <option name="closed" value="true" />
+      <created>1729106019960</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1729106019960</updated>
+    </task>
+    <task id="LOCAL-00019" summary="auth message changed">
+      <option name="closed" value="true" />
+      <created>1729106663062</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1729106663062</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,9 +289,14 @@
     <MESSAGE value="containerization added" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/dataSources/320543aa-2cc9-4ead-9002-710b4c76b123.xml&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="nginx ports changed to 8080" />
-    <option name="LAST_COMMIT_MESSAGE" value="nginx ports changed to 8080" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/baraiyq_app_backend$baraiyq_app_backend.coverage" NAME="baraiyq-app-backend Coverage Results" MODIFIED="1729104684453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <MESSAGE value="prod deploy version" />
+    <MESSAGE value="json serialization problem solved" />
+    <MESSAGE value="json serialization problem solved again" />
+    <MESSAGE value="aksjdhkasjdha" />
+    <MESSAGE value="cloudbuild.yaml" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="aksjnskndjs" />
+    <MESSAGE value="auth message changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="auth message changed" />
   </component>
 </project>
