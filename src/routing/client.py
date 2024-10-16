@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends
-from pydantic import json
 from sqlalchemy.orm import Session
 from fastapi.responses import JSONResponse
 
@@ -14,7 +13,7 @@ router = APIRouter()
 
 @router.post("/auth/sign-up/")
 def signup(request: SignUpRequest, db: Session = Depends(get_db)):
-    return json.loads(json.dumps(verify_signup(db, request), default=str))
+    return verify_signup(db, request)
 
 
 

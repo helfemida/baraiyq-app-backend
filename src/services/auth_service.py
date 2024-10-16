@@ -1,5 +1,4 @@
 from fastapi import HTTPException
-from random import randint
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from src.models import Client

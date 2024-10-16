@@ -7,16 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19ca0b5d-19bb-4c93-b744-fdf2e1d67ddb" name="Changes" comment="prod deploy version">
-      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/client_auth_tests.py" afterDir="false" />
+    <list default="true" id="19ca0b5d-19bb-4c93-b744-fdf2e1d67ddb" name="Changes" comment="json serialization problem solved">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routing/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/auth_schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/auth_schemas.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/auth_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/auth_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/security.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/security.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +104,7 @@
       <workItem from="1728558874318" duration="16944000" />
       <workItem from="1728621844543" duration="16099000" />
       <workItem from="1728990008178" duration="12411000" />
-      <workItem from="1729021918145" duration="9557000" />
+      <workItem from="1729021918145" duration="14180000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -184,7 +178,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728991901739</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="json serialization problem solved">
+      <option name="closed" value="true" />
+      <created>1729072516328</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1729072516328</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,6 +215,7 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/dataSources/320543aa-2cc9-4ead-9002-710b4c76b123.xml&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="nginx ports changed to 8080" />
     <MESSAGE value="prod deploy version" />
-    <option name="LAST_COMMIT_MESSAGE" value="prod deploy version" />
+    <MESSAGE value="json serialization problem solved" />
+    <option name="LAST_COMMIT_MESSAGE" value="json serialization problem solved" />
   </component>
 </project>
