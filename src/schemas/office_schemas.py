@@ -6,6 +6,12 @@ from typing import List
 #     title: str
 #     description: str
 
+class OfficeScheduleResponse(BaseModel):
+    day: str
+    start_time: str
+    end_time: str
+    is_booked: bool
+
 class OfficeResponse(BaseModel):
     id: int
     name: str
@@ -14,4 +20,5 @@ class OfficeResponse(BaseModel):
     rating: float
     lat: float
     lng: float
+    schedule: List[OfficeScheduleResponse]
     # feedbacks: List[Feedback]

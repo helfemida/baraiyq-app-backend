@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.exc import NoResultFound
 from sqlalchemy.orm import Session
 from src.database import get_db
 from src.schemas.office_schemas import OfficeResponse
@@ -27,7 +28,10 @@ def login_client(request: SignInEmailRequest, db: Session = Depends(get_db)):
     return {"message": "Login successful",
             "Auth": token}
 
-@router.get("/offices/")
-def read_offices(db: Session = Depends(get_db)) -> list[OfficeResponse]:
-    offices = get_available_offices(db)
-    return offices
+@router.get("/offices/{office_id}/")
+def read_offices(office_id: int, db: Session = Depends(get_db)) -> OfficeResponse:
+    try:
+        office = get_available_offices(office_id, db)
+        return office
+    except NoResultFound as e:
+        raise HTTPException(status_code=404, detail=str(e))

@@ -70,7 +70,7 @@ class OfficeSchedule(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     office_id = Column(Integer, ForeignKey("offices.id"))
-    day = Column(Integer, nullable=False)
+    day = Column(String, nullable=False)
     start_time = Column(String, nullable=False)
     end_time = Column(String, nullable=False)
     is_booked = Column(Boolean, default=False)
