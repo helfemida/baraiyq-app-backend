@@ -3,8 +3,10 @@ from sqlalchemy.orm import Session
 from fastapi.responses import JSONResponse
 
 from src.database import get_db
+from src.services.offices_service import get_offices_info, get_single_office
 
 from src.schemas.auth_schemas import SignUpRequest
+from src.schemas.office_schemas import OfficeInfo
 from src.services.auth_service import authenticate_client_phone, authenticate_client_email, verify_signup
 from src.schemas.auth_schemas import SignInEmailRequest, SignInPhoneRequest
 
@@ -31,3 +33,12 @@ def login_client_email(request: SignInEmailRequest, db: Session = Depends(get_db
     headers = {"Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE"}
     content = {"message": "Login successful", "Auth": token}
     return JSONResponse(content=content, headers=headers)
+
+
+@router.get("/offices/")
+def get_offices(db: Session = Depends(get_db)):
+    return JSONResponse({"offices": get_offices_info(db)})
+
+@router.get("/offices/{office_id}/")
+def read_offices(office_id: int, db: Session = Depends(get_db)):
+    return JSONResponse(get_single_office(office_id, db))
