@@ -41,6 +41,7 @@ class Feedback(Base):
 
     client = relationship("Client", back_populates="feedbacks")
 
+
 class Office(Base):
     __tablename__ = "offices"
     id = Column(Integer, primary_key=True, index=True)
