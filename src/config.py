@@ -9,5 +9,3 @@ DB_IP = "34.68.21.214"
 DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASS}@{DB_IP}/{DB_NAME}"
 
 #DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASS}@localhost/{DB_NAME}"
-
-

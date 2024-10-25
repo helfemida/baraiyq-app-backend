@@ -1,0 +1,35 @@
+name: Deploy to Google Compute Engine
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t your-username/your-app:latest .
+          docker push your-username/your-app:latest
+
+      - name: SSH into VM and run Docker container
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.GCE_HOST }}
+          username: ${{ secrets.GCE_USER }}
+          key: ${{ secrets.GCE_KEY }}
+          script: |
+            docker pull your-username/your-app:latest
+            docker run -d -p 80:8000 your-username/your-app:latest
