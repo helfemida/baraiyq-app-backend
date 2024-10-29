@@ -24,6 +24,8 @@ class OfficeResponse(BaseModel):
     address: str
     rating: float
     capacity: int
+    lat: float
+    lng: float
     schedules: List[OfficeSchedule]
     feedbacks: List[OfficeFeedbacks]
 

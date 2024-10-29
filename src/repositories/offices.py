@@ -50,6 +50,8 @@ def get_office_by_id(db: Session, office_id: int):
         "description": db_office[0].description,
         "address": db_office[0].address,
         "rating": db_office[0].rating,
+        "lat": db_office[0].lat,
+        "lng": db_office[0].lng,
         "schedule": db_schedule,
         "feedbacks": db_feedbacks
     }
