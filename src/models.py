@@ -1,6 +1,7 @@
+from datetime import datetime
 from sqlite3 import Date
 
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Float, DateTime
 from sqlalchemy.orm import relationship
 
 from src.database import Base
@@ -18,7 +19,7 @@ class Client(Base):
     date_of_birth = Column(String)
 
     feedbacks = relationship("Feedback", back_populates="client")
-
+    orders = relationship("Order", back_populates="client")
 
 class Manager(Base):
     __tablename__ = "managers"
@@ -53,6 +54,8 @@ class Office(Base):
     lng = Column(Float)
     capacity = Column(Integer)
 
+    order_items = relationship("Order", back_populates="office")
+
 
 class ScheduleSlot(Base):
     __tablename__ = "schedules"
@@ -63,3 +66,18 @@ class ScheduleSlot(Base):
     start_time = Column(String)
     end_time = Column(String)
     is_booked = Column(Boolean)
+
+class Order(Base):
+    __tablename__ = "orders"
+
+    id = Column(Integer, primary_key=True, index=True)
+    client_id = Column(Integer, ForeignKey('clients.id'), nullable=False)
+    office_id = Column(Integer, ForeignKey('offices.id'), nullable=False)
+    total_price = Column(Float, nullable=False)
+    people_amount = Column(Integer, nullable=False)
+    date = Column(String)
+    start_time = Column(String)
+    end_time = Column(String)
+
+    client = relationship("Client", back_populates="orders")
+    office = relationship("Office", back_populates="orders")
