@@ -8,15 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19ca0b5d-19bb-4c93-b744-fdf2e1d67ddb" name="Changes" comment="github actions reset 1.1">
-      <change afterPath="$PROJECT_DIR$/src/repositories/orders.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/schemas/order_schemas.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/orders_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/baraiyq-app-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/baraiyq-app-backend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routing/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/client.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +127,7 @@
       <workItem from="1729703358983" duration="1307000" />
       <workItem from="1729758923992" duration="15329000" />
       <workItem from="1730191206357" duration="919000" />
-      <workItem from="1730400447308" duration="3275000" />
+      <workItem from="1730400447308" duration="3924000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
