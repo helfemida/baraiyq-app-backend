@@ -10,9 +10,8 @@
     <list default="true" id="19ca0b5d-19bb-4c93-b744-fdf2e1d67ddb" name="Changes" comment="github actions reset 1.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repositories/orders.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/orders.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/order_schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/order_schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/orders_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/orders_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositories/offices.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/offices.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/office_schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/office_schemas.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +131,8 @@
       <workItem from="1729758923992" duration="15329000" />
       <workItem from="1730191206357" duration="919000" />
       <workItem from="1730400447308" duration="3924000" />
-      <workItem from="1730550024475" duration="1754000" />
+      <workItem from="1730550024475" duration="2203000" />
+      <workItem from="1730716786249" duration="764000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />

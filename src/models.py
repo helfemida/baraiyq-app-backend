@@ -43,10 +43,10 @@ class Feedback(Base):
 class Office(Base):
     __tablename__ = "offices"
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String)
+    name = Column(String, index=True)
     description = Column(String)
-    address = Column(String)
-    rating = Column(Float)
+    address = Column(String, index=True)
+    rating = Column(Float, index=True)
     lat = Column(Float)
     lng = Column(Float)
     capacity = Column(Integer)

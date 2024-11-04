@@ -1,5 +1,6 @@
 from typing import List, Type
 
+from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from src.models import Office, ScheduleSlot, Feedback, Client
 from src.schemas.office_schemas import OfficeFeedbacks, OfficeSchedule, OfficeResponse, OfficeInfo
@@ -18,7 +19,7 @@ def get_office_schedules(db: Session, id: int):
             "day": schedule.day,
             "start_time": schedule.start_time,
             "end_time": schedule.end_time,
-            "booked": schedule.is_booked,
+            "is_booked": schedule.is_booked,
         })
 
     return list
@@ -39,7 +40,10 @@ def get_office_feedbacks(db: Session, id: int):
     return list
 
 def get_office_by_id(db: Session, office_id: int):
-    db_office = db.query(Office).filter(Office.id == office_id).all()
+    db_office = db.query(Office).filter(Office.id == office_id).first()
+    if not db_office:
+        raise HTTPException(status_code=404, detail="Office not found")
+
     db_feedbacks = get_office_feedbacks(db, office_id)
     db_schedule = get_office_schedules(db, office_id)
 

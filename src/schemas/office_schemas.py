@@ -4,6 +4,7 @@ from typing import List
 class OfficeFeedbacks(BaseModel):
     id: int
     fullname: str
+    title: str
     description: str
     rating: float
 
