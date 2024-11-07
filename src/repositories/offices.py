@@ -2,7 +2,7 @@ from typing import List, Type
 
 from sqlalchemy.orm import Session
 from src.models import Office, ScheduleSlot, Feedback, Client
-from src.schemas.office_schemas import OfficeFeedbacks, OfficeSchedule, OfficeResponse, OfficeInfo
+from src.schemas.office_schemas import OfficeFeedbacks, OfficeSchedule, OfficeResponse, OfficeInfo, Feedbacks
 
 
 def get_all_offices(db: Session):
@@ -60,3 +60,23 @@ def get_office_by_id(db: Session, office_id: int):
 
     return result_office
 
+def add_feedback(db: Session, feedback_data: Feedbacks):
+    feedback = Feedback(
+        client_id=feedback_data.client_id,
+        office_id=feedback_data.office_id,
+        title=feedback_data.title,
+        description=feedback_data.description,
+        rating=feedback_data.rating
+    )
+    db.add(feedback)
+    db.commit()
+    db.refresh(feedback)
+
+    return {
+        "id": feedback.id,
+        "client_id": feedback.client_id,
+        "office_id": feedback.office_id,
+        "title": feedback.title,
+        "description": feedback.description,
+        "rating": feedback.rating
+    }
