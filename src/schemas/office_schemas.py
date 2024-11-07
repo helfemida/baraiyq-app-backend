@@ -2,8 +2,9 @@ from pydantic import BaseModel
 from typing import List
 
 class OfficeFeedbacks(BaseModel):
-    id: int
-    fullname: str
+    client_id: int
+    office_id: int
+    title: str
     description: str
     rating: float
 
