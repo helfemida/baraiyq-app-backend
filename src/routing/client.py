@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from fastapi.responses import JSONResponse
 
 from src.database import get_db
-from src.models import Feedback
+from src.schemas.office_schemas import Feedbacks
 from src.services.offices_service import get_offices_info, get_single_office, create_feedback
 
 from src.schemas.auth_schemas import SignUpRequest
@@ -44,5 +44,5 @@ def read_offices(office_id: int, db: Session = Depends(get_db)):
     return JSONResponse(get_single_office(office_id, db))
 
 @router.post("/offices/feedbacks/post/")
-def submit_feedback(feedback: Feedback, db: Session = Depends(get_db)):
+def submit_feedback(feedback: Feedbacks, db: Session = Depends(get_db)):
     return JSONResponse(create_feedback(db, feedback))

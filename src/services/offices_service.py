@@ -2,7 +2,9 @@ from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
 from src.models import Feedback
+
 from src.repositories.offices import get_all_offices, get_office_by_id
+from src.schemas.office_schemas import Feedbacks
 
 
 def get_offices_info(db: Session):
@@ -29,7 +31,7 @@ def get_offices_info(db: Session):
 def get_single_office(id: int, db: Session):
     return get_office_by_id(db, id)
 
-def create_feedback(db: Session, feedback_data: Feedback):
+def create_feedback(db: Session, feedback_data: Feedbacks):
     feedback = Feedback(
         client_id=feedback_data.client_id,
         office_id=feedback_data.office_id,

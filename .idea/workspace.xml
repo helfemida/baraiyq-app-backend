@@ -8,13 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19ca0b5d-19bb-4c93-b744-fdf2e1d67ddb" name="Changes" comment="github actions reset 1.1">
-      <change beforePath="$PROJECT_DIR$/.idea/baraiyq-app-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/baraiyq-app-backend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repositories/clients.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/clients.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/office_schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/office_schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/offices_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/offices_service.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +129,7 @@
       <workItem from="1729703358983" duration="1307000" />
       <workItem from="1729758923992" duration="15329000" />
       <workItem from="1730191206357" duration="919000" />
-      <workItem from="1730872877036" duration="3626000" />
+      <workItem from="1730872877036" duration="4406000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />

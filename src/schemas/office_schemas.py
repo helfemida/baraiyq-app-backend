@@ -1,13 +1,18 @@
 from pydantic import BaseModel
 from typing import List
 
-class OfficeFeedbacks(BaseModel):
+class Feedbacks(BaseModel):
     client_id: int
     office_id: int
     title: str
     description: str
     rating: float
 
+class OfficeFeedbacks(BaseModel):
+    id: int
+    fullname: str
+    description: str
+    rating: float
 
 class OfficeSchedule(BaseModel):
     id: int
