@@ -4,11 +4,13 @@ from fastapi.responses import JSONResponse
 
 from src.database import get_db
 from src.schemas.office_schemas import Feedbacks
+from src.schemas.order_schemas import OrderRequest
 from src.services.offices_service import get_offices_info, get_single_office, create_feedback
 
 from src.schemas.auth_schemas import SignUpRequest
 from src.services.auth_service import authenticate_client_phone, authenticate_client_email, verify_signup
 from src.schemas.auth_schemas import SignInEmailRequest, SignInPhoneRequest
+from src.services.order_service import create_order
 
 router = APIRouter()
 
@@ -46,3 +48,8 @@ def read_offices(office_id: int, db: Session = Depends(get_db)):
 @router.post("/offices/feedbacks/post/")
 def submit_feedback(feedback: Feedbacks, db: Session = Depends(get_db)):
     return JSONResponse(create_feedback(db, feedback))
+
+@router.post("/orders/")
+def place_order(order: OrderRequest, db: Session = Depends(get_db)):
+    result = create_order(db, order)
+    return JSONResponse(content=result)

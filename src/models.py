@@ -63,3 +63,13 @@ class ScheduleSlot(Base):
     start_time = Column(String)
     end_time = Column(String)
     is_booked = Column(Boolean)
+
+class Order(Base):
+    __tablename__ = "orders"
+    id = Column(Integer, primary_key=True, index=True)
+    client_id = Column(Integer, ForeignKey('clients.id'), nullable=False)
+    office_id = Column(Integer, ForeignKey('offices.id'), nullable=False)
+    total_price = Column(Float, nullable=False)
+    people_amount = Column(Integer, nullable=False)
+    date = Column(String)
+
