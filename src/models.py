@@ -72,4 +72,3 @@ class Order(Base):
     total_price = Column(Float, nullable=False)
     people_amount = Column(Integer, nullable=False)
     date = Column(String)
-

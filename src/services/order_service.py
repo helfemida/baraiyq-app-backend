@@ -5,6 +5,11 @@ from src.schemas.order_schemas import OrderRequest
 
 
 def create_order(db: Session, order_data: OrderRequest):
+    office_orders = db.query(Order).filter(Order.office_id == order_data.office_id,
+                                           Order.date == order_data.date).all()
+    if len(office_orders) >= 3:
+        raise HTTPException(status_code=406, detail="This office is already booked for 3 orders on this date")
+
     slots = db.query(ScheduleSlot).filter(ScheduleSlot.id.in_(order_data.time_slots),
                                           ScheduleSlot.is_booked == False).all()
 
