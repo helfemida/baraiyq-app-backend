@@ -49,7 +49,7 @@ def read_offices(office_id: int, db: Session = Depends(get_db)):
 def submit_feedback(feedback: Feedbacks, db: Session = Depends(get_db)):
     return JSONResponse(create_feedback(db, feedback))
 
-@router.post("/orders/")
+@router.post("/orders/create/")
 def place_order(order: OrderRequest, db: Session = Depends(get_db)):
     result = create_order(db, order)
     return JSONResponse(content=result)
