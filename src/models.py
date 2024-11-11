@@ -1,10 +1,8 @@
-from sqlite3 import Date
+import enum
 
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Float, Enum
 from sqlalchemy.orm import relationship
-
 from src.database import Base
-
 
 class Client(Base):
     __tablename__ = "clients"
@@ -29,6 +27,7 @@ class Manager(Base):
     email = Column(String, unique=True)
     password = Column(String)
 
+
 class Feedback(Base):
     __tablename__ = "feedbacks"
 
@@ -44,6 +43,7 @@ class Feedback(Base):
 
 class Office(Base):
     __tablename__ = "offices"
+
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
     description = Column(String)
@@ -52,6 +52,8 @@ class Office(Base):
     lat = Column(Float)
     lng = Column(Float)
     capacity = Column(Integer)
+
+    schedules = relationship("ScheduleSlot", back_populates="office")
 
 
 class ScheduleSlot(Base):
@@ -64,11 +66,35 @@ class ScheduleSlot(Base):
     end_time = Column(String)
     is_booked = Column(Boolean)
 
+    office = relationship("Office", back_populates="schedules")
+
+
+class OrderStatusEnum(str, enum.Enum):
+    Booked = "Booked"
+    Completed = "Completed"
+    Cancelled = "Cancelled"
+
 class Order(Base):
     __tablename__ = "orders"
+
     id = Column(Integer, primary_key=True, index=True)
-    client_id = Column(Integer, ForeignKey('clients.id'), nullable=False)
-    office_id = Column(Integer, ForeignKey('offices.id'), nullable=False)
-    total_price = Column(Float, nullable=False)
-    people_amount = Column(Integer, nullable=False)
-    date = Column(String)
+    office_id = Column(Integer, ForeignKey("offices.id"), nullable=False)
+    client_id = Column(Integer, ForeignKey("clients.id"), nullable=False)
+    office_name = Column(String)
+    office_desc = Column(String)
+    address = Column(String)
+    max_capacity = Column(Integer)
+    duration = Column(String)
+    status = Column(Enum(OrderStatusEnum), default=OrderStatusEnum.Booked, nullable=False)  # Now using capitalized enum
+    total_sum = Column(Float, nullable=False)
+
+    services = relationship("OrderService", back_populates="order")
+
+class OrderService(Base):
+    __tablename__ = "order_services"
+
+    id = Column(Integer, primary_key=True, index=True)
+    order_id = Column(Integer, ForeignKey("orders.id"))
+    service_name = Column(String)
+
+    order = relationship("Order", back_populates="services")
