@@ -54,3 +54,5 @@ def check_office_availability(db: Session, office_id: int, duration: str):
     )
 
     return overlapping_orders
+
+

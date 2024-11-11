@@ -1,3 +1,5 @@
+from typing import List
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from fastapi.responses import JSONResponse
@@ -10,7 +12,7 @@ from src.services.offices_service import get_offices_info, get_single_office, cr
 from src.schemas.auth_schemas import SignUpRequest
 from src.services.auth_service import authenticate_client_phone, authenticate_client_email, verify_signup
 from src.schemas.auth_schemas import SignInEmailRequest, SignInPhoneRequest
-from src.services.order_service import create_order_service
+from src.services.order_service import create_order_service, get_orders_by_client_id
 
 router = APIRouter()
 
@@ -52,3 +54,7 @@ def submit_feedback(feedback: Feedbacks, db: Session = Depends(get_db)):
 @router.post("/order/{office_id}/", response_model=OrderResponse)
 def place_order(order: OrderRequest, db: Session = Depends(get_db)):
     return create_order_service(db, order)
+
+@router.get("/orders/{client_id}", response_model=List[OrderResponse])
+def get_client_orders(client_id: int, db: Session = Depends(get_db)):
+    return get_orders_by_client_id(db, client_id)
