@@ -14,7 +14,7 @@ class OrderRequest(BaseModel):
     address: str
     max_capacity: int
     duration: str
-    status: Literal["Booked", "Completed", "Cancelled"]
+    status: Literal["Booked", "Completed", "Cancelled", "Pending"]
     total_sum: float
     services: List[OrderServiceRequest]
 

@@ -73,6 +73,7 @@ class OrderStatusEnum(str, enum.Enum):
     Booked = "Booked"
     Completed = "Completed"
     Cancelled = "Cancelled"
+    Pending = "Pending"
 
 class Order(Base):
     __tablename__ = "orders"
@@ -85,7 +86,7 @@ class Order(Base):
     address = Column(String)
     max_capacity = Column(Integer)
     duration = Column(String)
-    status = Column(Enum(OrderStatusEnum), default=OrderStatusEnum.Booked, nullable=False)  # Now using capitalized enum
+    status = Column(Enum(OrderStatusEnum), default=OrderStatusEnum.Booked, nullable=False)
     total_sum = Column(Float, nullable=False)
 
     services = relationship("OrderService", back_populates="order")

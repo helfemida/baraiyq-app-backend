@@ -1,7 +1,8 @@
 from datetime import datetime
 
+from sqlalchemy import and_
 from sqlalchemy.orm import Session
-from src.models import Order, OrderService, OrderStatusEnum
+from src.models import Order, OrderService, OrderStatusEnum, ScheduleSlot
 from src.schemas.order_schemas import OrderRequest
 
 def create_order(db: Session, order_data: OrderRequest):
@@ -26,3 +27,30 @@ def create_order(db: Session, order_data: OrderRequest):
 
     db.commit()
     return db_order
+
+def parse_func(duration: str):
+    date, time_range = duration.split(" ")
+    start_time, end_time = time_range.split("-")
+    start_datetime = datetime.strptime(f"{date} {start_time}", "%Y-%m-%d %H:%M")
+    end_datetime = datetime.strptime(f"{date} {end_time}", "%Y-%m-%d %H:%M")
+    return start_datetime, end_datetime
+
+def check_office_availability(db: Session, office_id: int, duration: str):
+    start_datetime, end_datetime = parse_func(duration)
+
+    active_orders = db.query(Order).filter(
+        and_(
+            Order.office_id == office_id,
+            Order.status == OrderStatusEnum.Booked
+        )
+    ).all()
+
+    overlapping_orders = sum(
+        1 for order in active_orders
+        if (
+                parse_func(order.duration)[0] < end_datetime and
+                parse_func(order.duration)[1] > start_datetime
+        )
+    )
+
+    return overlapping_orders
