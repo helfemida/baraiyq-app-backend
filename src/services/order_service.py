@@ -16,3 +16,9 @@ def create_order_service(db: Session, order_data: OrderRequest):
 
 def get_orders_by_client_id(db: Session, client_id: int):
     return db.query(Order).options(joinedload(Order.services)).filter(Order.client_id == client_id).all()
+
+def get_order_by_id(db: Session, order_id: int):
+    order = db.query(Order).options(joinedload(Order.services)).filter(Order.id == order_id).first()
+    if not order:
+        raise HTTPException(status_code=404, detail="Order not found")
+    return order
