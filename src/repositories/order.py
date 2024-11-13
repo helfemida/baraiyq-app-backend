@@ -35,25 +35,20 @@ def parse_func(duration: str):
     end_datetime = datetime.strptime(f"{date} {end_time}", "%Y-%m-%d %H:%M")
     return start_datetime, end_datetime
 
+
 def check_office_availability(db: Session, office_id: int, duration: str):
     start_datetime, end_datetime = parse_func(duration)
 
-    active_orders = db.query(Order).filter(
-        and_(
-            Order.office_id == office_id,
-            Order.status == OrderStatusEnum.Booked
-        )
+    available_slots = db.query(ScheduleSlot).filter(
+        ScheduleSlot.office_id == office_id,
+        ScheduleSlot.is_booked == False,  # Exclude booked slots
+        ScheduleSlot.day == start_datetime.date(),
+        ScheduleSlot.start_time >= start_datetime.time(),
+        ScheduleSlot.end_time <= end_datetime.time()
     ).all()
 
-    overlapping_orders = sum(
-        1 for order in active_orders
-        if (
-                parse_func(order.duration)[0] < end_datetime and
-                parse_func(order.duration)[1] > start_datetime
-        )
-    )
+    return available_slots
 
-    return overlapping_orders
 
 def book_schedule_slot(db: Session, office_id: int, duration: str):
     date, time_range = duration.split(" ")
