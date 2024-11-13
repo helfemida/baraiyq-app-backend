@@ -11,7 +11,7 @@ def create_order_service(db: Session, order_data: OrderRequest):
 
     if existing_orders >= 3:
         raise HTTPException(status_code=406, detail='The office is not available for the requested duration. Maximum of 3 overlapping orders allowed.')
-
+    order.book_schedule_slot(db, order_data.office_id, order_data.duration)
     return order.create_order(db, order_data)
 
 def get_orders_by_client_id(db: Session, client_id: int):

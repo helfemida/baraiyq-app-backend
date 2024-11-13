@@ -55,4 +55,17 @@ def check_office_availability(db: Session, office_id: int, duration: str):
 
     return overlapping_orders
 
+def book_schedule_slot(db: Session, office_id: int, duration: str):
+    date, time_range = duration.split(" ")
+    start_time, end_time = time_range.split("-")
 
+    schedule_slot = db.query(ScheduleSlot).filter(
+        ScheduleSlot.office_id == office_id,
+        ScheduleSlot.day == date,
+        ScheduleSlot.start_time == start_time,
+        ScheduleSlot.end_time == end_time
+    ).first()
+
+    if schedule_slot:
+        schedule_slot.is_booked = True
+        db.commit()
