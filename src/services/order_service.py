@@ -1,6 +1,7 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session, joinedload
 
+from src.database import get_db
 from src.models import Order, OrderService
 from src.repositories import order
 from src.schemas.order_schemas import OrderRequest
@@ -46,3 +47,11 @@ def update_order_service(db: Session, order_id:int, order_data: OrderRequest):
     db.commit()
     db.refresh(order)
     return order
+
+def cancel_order_service(order_id: int, db: Session):
+    order = db.query(Order).filter(Order.id == order_id).first()
+    if not order:
+        raise HTTPException(status_code=404, detail="Order not found")
+    db.delete(order)
+    db.commit()
+

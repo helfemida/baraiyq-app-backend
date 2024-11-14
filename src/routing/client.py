@@ -13,7 +13,7 @@ from src.schemas.auth_schemas import SignUpRequest
 from src.services.auth_service import authenticate_client_phone, authenticate_client_email, verify_signup
 from src.schemas.auth_schemas import SignInEmailRequest, SignInPhoneRequest
 from src.services.order_service import create_order_service, get_orders_by_client_id, get_order_by_id, \
-    update_order_service
+    update_order_service, cancel_order_service
 
 router = APIRouter()
 
@@ -67,3 +67,8 @@ def get_order(order_id: int, db: Session = Depends(get_db)):
 @router.put("/order/update/{order_id}", response_model=OrderResponse)
 def update_order(order_id: int, order: OrderRequest, db: Session = Depends(get_db)):
     return update_order_service(db, order_id, order)
+
+@router.delete("/order/cancel/{order_id}")
+def cancel_order(order_id: int, db: Session = Depends(get_db)):
+    cancel_order_service(order_id, db)
+    return {"message": f"Order {order_id} deleted successfully"}
