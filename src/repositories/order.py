@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import and_
+from sqlalchemy import and_, cast, Date, Time
 from sqlalchemy.orm import Session
 from src.models import Order, OrderService, OrderStatusEnum, ScheduleSlot
 from src.schemas.order_schemas import OrderRequest
@@ -41,10 +41,10 @@ def check_office_availability(db: Session, office_id: int, duration: str):
 
     available_slots = db.query(ScheduleSlot).filter(
         ScheduleSlot.office_id == office_id,
-        ScheduleSlot.is_booked == False,  # Exclude booked slots
-        ScheduleSlot.day == start_datetime.date(),
-        ScheduleSlot.start_time >= start_datetime.time(),
-        ScheduleSlot.end_time <= end_datetime.time()
+        ScheduleSlot.is_booked == False,
+        cast(ScheduleSlot.day, Date) == start_datetime.date(),
+        cast(ScheduleSlot.start_time, Time) >= start_datetime.time(),
+        cast(ScheduleSlot.end_time, Time) <= end_datetime.time()
     ).all()
 
     return available_slots

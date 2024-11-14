@@ -15,7 +15,7 @@ from src.schemas.order_schemas import OrderRequest
 def create_order_service(db: Session, order_data: OrderRequest):
     existing_orders = order.check_office_availability(db, order_data.office_id, order_data.duration)
 
-    if existing_orders >= 3:
+    if len(existing_orders) >= 3:
         raise HTTPException(status_code=406, detail='The office is not available for the requested duration. Maximum of 3 overlapping orders allowed.')
     order.book_schedule_slot(db, order_data.office_id, order_data.duration)
     return order.create_order(db, order_data)
