@@ -12,7 +12,8 @@ from src.services.offices_service import get_offices_info, get_single_office, cr
 from src.schemas.auth_schemas import SignUpRequest
 from src.services.auth_service import authenticate_client_phone, authenticate_client_email, verify_signup
 from src.schemas.auth_schemas import SignInEmailRequest, SignInPhoneRequest
-from src.services.order_service import create_order_service, get_orders_by_client_id, get_order_by_id
+from src.services.order_service import create_order_service, get_orders_by_client_id, get_order_by_id, \
+    update_order_service
 
 router = APIRouter()
 
@@ -63,3 +64,6 @@ def get_client_orders(client_id: int, db: Session = Depends(get_db)):
 def get_order(order_id: int, db: Session = Depends(get_db)):
     return get_order_by_id(db, order_id)
 
+@router.put("/order/update/{order_id}", response_model=OrderResponse)
+def update_order(order_id: int, order: OrderRequest, db: Session = Depends(get_db)):
+    return update_order_service(db, order_id, order)

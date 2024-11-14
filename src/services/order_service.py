@@ -1,9 +1,9 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session, joinedload
 
-from src.models import Order
+from src.models import Order, OrderService
 from src.repositories import order
-from src.schemas.order_schemas import OrderRequest, OrderResponse
+from src.schemas.order_schemas import OrderRequest
 
 
 def create_order_service(db: Session, order_data: OrderRequest):
@@ -21,4 +21,28 @@ def get_order_by_id(db: Session, order_id: int):
     order = db.query(Order).options(joinedload(Order.services)).filter(Order.id == order_id).first()
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
+    return order
+
+def update_order_service(db: Session, order_id:int, order_data: OrderRequest):
+    order = db.query(Order).filter(Order.id == order_id).first()
+    if not order:
+        raise HTTPException(status_code=404, detail="Order not found")
+
+    order.office_id = order_data.office_id
+    order.client_id = order_data.client_id
+    order.office_name = order_data.office_name
+    order.office_desc = order_data.office_desc
+    order.address = order_data.address
+    order.max_capacity = order_data.max_capacity
+    order.duration = order_data.duration
+    order.status = order_data.status
+    order.total_sum = order_data.total_sum
+
+    db.query(OrderService).filter(OrderService.order_id == order_id).delete()
+    for service in order_data.services:
+        new_service = OrderService(order_id=order_id, service_name=service.service_name)
+        db.add(new_service)
+
+    db.commit()
+    db.refresh(order)
     return order
