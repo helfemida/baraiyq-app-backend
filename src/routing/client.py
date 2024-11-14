@@ -3,6 +3,7 @@ from typing import List
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from fastapi.responses import JSONResponse
+from starlette.responses import StreamingResponse
 
 from src.database import get_db
 from src.schemas.office_schemas import Feedbacks
@@ -13,7 +14,7 @@ from src.schemas.auth_schemas import SignUpRequest
 from src.services.auth_service import authenticate_client_phone, authenticate_client_email, verify_signup
 from src.schemas.auth_schemas import SignInEmailRequest, SignInPhoneRequest
 from src.services.order_service import create_order_service, get_orders_by_client_id, get_order_by_id, \
-    update_order_service, cancel_order_service
+    update_order_service, cancel_order_service, generate_receipt_service
 
 router = APIRouter()
 
@@ -72,3 +73,15 @@ def update_order(order_id: int, order: OrderRequest, db: Session = Depends(get_d
 def cancel_order(order_id: int, db: Session = Depends(get_db)):
     cancel_order_service(order_id, db)
     return {"message": f"Order {order_id} deleted successfully"}
+
+@router.get("/order/payment/{order_id}")
+def generate_receipt(order_id: int, db: Session = Depends(get_db)):
+    pdf_file = generate_receipt_service(order_id, db)
+
+    return StreamingResponse(
+        pdf_file,
+        media_type="application/pdf",
+        headers={"Content-Disposition": f"attachment; filename=receipt_{order_id}.pdf"}
+    )
+
+

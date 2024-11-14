@@ -1,6 +1,7 @@
 import enum
+from datetime import datetime
 
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Float, Enum
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Float, Enum, DateTime
 from sqlalchemy.orm import relationship
 from src.database import Base
 
@@ -99,3 +100,14 @@ class OrderService(Base):
     service_name = Column(String)
 
     order = relationship("Order", back_populates="services")
+
+class Receipt(Base):
+    __tablename__ = "receipts"
+
+    id = Column(Integer, primary_key=True, index=True)
+    order_id = Column(Integer, ForeignKey("orders.id"))
+    receipt_number = Column(String, unique=True, index=True)
+    total_sum = Column(Float)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    order = relationship("Order")
