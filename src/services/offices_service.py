@@ -1,8 +1,6 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
-from src.models import Feedback
-
 from src.repositories.offices import get_all_offices, get_office_by_id, add_feedback
 from src.schemas.office_schemas import Feedbacks
 

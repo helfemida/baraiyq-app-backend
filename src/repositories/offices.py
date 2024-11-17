@@ -1,8 +1,6 @@
-from typing import List, Type
-
 from sqlalchemy.orm import Session
 from src.models import Office, ScheduleSlot, Feedback, Client
-from src.schemas.office_schemas import OfficeFeedbacks, OfficeSchedule, OfficeResponse, OfficeInfo, Feedbacks
+from src.schemas.office_schemas import Feedbacks
 
 
 def get_all_offices(db: Session):
