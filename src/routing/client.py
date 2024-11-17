@@ -1,11 +1,12 @@
 from typing import List
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from fastapi.responses import JSONResponse
 from starlette.responses import StreamingResponse
 
 from src.database import get_db
+from src.repositories.clients import get_client_by_id
 from src.schemas.office_schemas import Feedbacks
 from src.schemas.order_schemas import OrderRequest, OrderResponse
 from src.services.offices_service import get_offices_info, get_single_office, create_feedback
@@ -14,7 +15,7 @@ from src.schemas.auth_schemas import SignUpRequest
 from src.services.auth_service import authenticate_client_phone, authenticate_client_email, verify_signup
 from src.schemas.auth_schemas import SignInEmailRequest, SignInPhoneRequest
 from src.services.order_service import create_order_service, get_orders_by_client_id, get_order_by_id, \
-    update_order_service, cancel_order_service, generate_receipt_service
+    update_order_service, cancel_order_service, generate_receipt_service, send_email
 
 router = APIRouter()
 
@@ -84,4 +85,16 @@ def generate_receipt(order_id: int, db: Session = Depends(get_db)):
         headers={"Content-Disposition": f"attachment; filename=receipt_{order_id}.pdf"}
     )
 
+@router.get("/orders/payment/email/{order_id}")
+def send_receipt_email(order_id: int, db: Session = Depends(get_db)):
+    order = get_order_by_id(db, order_id)
 
+    subject = f"Your Receipt for Order #{order_id}"
+    c = get_client_by_id(db, order.client_id)
+    recipient = c.email
+    content = f"Dear {c.name},\n\nThank you for your payment.\n\n"
+    content += f"Order ID: {order_id}\nTotal: ${order.total_sum}\nDate: {order.duration}\n\n"
+    content += "Here is your receipt:"
+    pdf_receipt = generate_receipt_service(order_id, db)
+    send_email(recipient, subject, content, pdf_receipt)
+    return JSONResponse(status_code=200, content={"message": "Receipt sent successfully"})

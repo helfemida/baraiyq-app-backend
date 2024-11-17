@@ -1,4 +1,8 @@
+import smtplib
 from datetime import datetime
+from email.mime.application import MIMEApplication
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from io import BytesIO
 
 from fastapi import HTTPException
@@ -144,3 +148,31 @@ def generate_receipt_service(order_id: int, db: Session):
     pdf_file = generate_pdf_receipt(receipt_data)
 
     return pdf_file
+
+def send_email(to_address: str, subject: str, content: str, pdf_attachment: BytesIO):
+    smtp_server = "smtp.gmail.com"
+    smtp_port = 587
+    sender_email = "nuspekovalihan@gmail.com"
+    sender_password = "sbwlgtbryqkgynvv"
+    sender_name = "baraiyq.kz"
+
+    message = MIMEMultipart()
+    message["Subject"] = subject
+    message["From"] = f"{sender_name} <{sender_email}>"
+    message["To"] = to_address
+
+    message.attach(MIMEText(content, "plain"))
+
+    pdf_attachment.seek(0)
+    pdf_part = MIMEApplication(pdf_attachment.read(), _subtype="pdf")
+    pdf_part.add_header('Content-Disposition', 'attachment', filename="receipt.pdf")
+    message.attach(pdf_part)
+
+    try:
+        with smtplib.SMTP(smtp_server, smtp_port) as server:
+            server.starttls()
+            server.login(sender_email, sender_password)
+            server.sendmail(sender_email, to_address, message.as_string())
+    except Exception as e:
+        print("Failed to send email:", e)
+        raise
