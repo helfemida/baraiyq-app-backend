@@ -54,7 +54,7 @@ def cancel_order_service(order_id: int, db: Session):
     order = db.query(Order).filter(Order.id == order_id).first()
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
-    db.delete(order)
+    order.status = "Cancelled"
     db.commit()
 
 def generate_pdf_receipt(order_data):

@@ -72,7 +72,7 @@ def update_order(order_id: int, order: OrderRequest, db: Session = Depends(get_d
 @router.delete("/order/cancel/{order_id}")
 def cancel_order(order_id: int, db: Session = Depends(get_db)):
     cancel_order_service(order_id, db)
-    return {"message": f"Order {order_id} deleted successfully"}
+    return {"message": f"Order {order_id} cancelled successfully"}
 
 @router.get("/order/payment/{order_id}")
 def generate_receipt(order_id: int, db: Session = Depends(get_db)):
