@@ -27,3 +27,4 @@ def login_manager_phone(request: SignInPhoneRequest, db: Session = Depends(get_d
     headers = {"Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE"}
     content = {"message": "Login successful", "Auth": token}
     return JSONResponse(content=content, headers=headers)
+

@@ -6,15 +6,20 @@ from typing import List
 from sqlalchemy import cast, Date, Time
 from sqlalchemy.orm import Session, joinedload
 from src.models import Order, OrderService, ScheduleSlot, Receipt
+from src.repositories.managers import assign_manager, get_last_assigned_manager
 from src.schemas.order_schemas import OrderRequest
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
 def create_order(db: Session, order_data: OrderRequest):
+    last_manager_id = get_last_assigned_manager(db)
+    next_manager_id = assign_manager(last_manager_id)
+
     db_order = Order(
         office_id=order_data.office_id,
         client_id=order_data.client_id,
+        manager_id = next_manager_id,
         office_name=order_data.office_name,
         office_desc=order_data.office_desc,
         address=order_data.address,

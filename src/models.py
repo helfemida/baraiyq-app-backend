@@ -29,6 +29,8 @@ class Manager(Base):
     phone = Column(String, unique=True)
     password = Column(String)
 
+    orders = relationship("Order", back_populates="manager")
+
 
 class Feedback(Base):
     __tablename__ = "feedbacks"
@@ -83,6 +85,7 @@ class Order(Base):
     id = Column(Integer, primary_key=True, index=True)
     office_id = Column(Integer, ForeignKey("offices.id"), nullable=False)
     client_id = Column(Integer, ForeignKey("clients.id"), nullable=False)
+    manager_id = Column(Integer, ForeignKey("managers.id"), nullable=False)
     office_name = Column(String)
     office_desc = Column(String)
     address = Column(String)
@@ -92,6 +95,7 @@ class Order(Base):
     total_sum = Column(Float, nullable=False)
 
     services = relationship("OrderService", back_populates="order")
+    manager = relationship("Manager", back_populates="orders")
 
 class OrderService(Base):
     __tablename__ = "order_services"
