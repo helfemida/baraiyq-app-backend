@@ -10,7 +10,6 @@ def get_client_by_phone(db: Session, phone: str):
     return db.query(Client).filter(Client.phone == phone).first()
 
 
-
 def get_client_by_id(db: Session, id: int):
     return db.query(Client).filter(Client.id == id).first()
 

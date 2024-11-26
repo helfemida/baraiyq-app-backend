@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from src.routing import client
+from src.routing import client, manager
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -12,6 +12,8 @@ app.add_middleware(
 )
 
 app.include_router(client.router, prefix="/clients", tags=["client"])
+
+app.include_router(manager.router, prefix="/managers", tags=["manager"])
 
 @app.get("/")
 def read_root():

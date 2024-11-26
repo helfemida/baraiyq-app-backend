@@ -2,6 +2,7 @@ from fastapi import HTTPException
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from src.models import Client
+from src.repositories.managers import get_manager_by_email, get_manager_by_phone
 from src.schemas.auth_schemas import SignUpRequest
 from src.utils.security import create_access_token, verify_password
 from src.repositories.clients import get_client_by_email, get_client_by_phone
@@ -64,3 +65,33 @@ def authenticate_client_phone(db: Session, phone: str, password: str):
     access_token = create_access_token(db=db, user_id=db_client.id, expires_delta=access_token_expires)
 
     return {"access_token": access_token}
+
+def authenticate_manager_email(db: Session, phone: str, password: str):
+    db_manager = get_manager_by_email(db, phone)
+    if not db_manager:
+        raise HTTPException(status_code=400, detail="No such email.")
+
+    if password != db_manager.password:
+        raise HTTPException(status_code=400, detail="Invalid email or password.")
+
+    return {
+        "id": db_manager.id,
+        "name": db_manager.name,
+        "phone": db_manager.phone,
+        "email": db_manager.email,
+    }
+
+def authenticate_manager_phone(db: Session, phone: str, password: str):
+    db_manager = get_manager_by_phone(db, phone)
+    if not db_manager:
+        raise HTTPException(status_code=400, detail="No such phone number.")
+
+    if password != db_manager.password:
+        raise HTTPException(status_code=400, detail="Invalid phone or password.")
+
+    return {
+        "id": db_manager.id,
+        "name": db_manager.name,
+        "phone": db_manager.phone,
+        "email": db_manager.email,
+    }
