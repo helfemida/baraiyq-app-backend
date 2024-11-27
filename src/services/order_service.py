@@ -20,11 +20,13 @@ def create_order_service(db: Session, order_data: OrderRequest):
     existing_orders = check_office_availability(db, order_data.office_id, order_data.duration)
 
     if len(existing_orders) >= 3:
-        raise HTTPException(status_code=406, detail='The office is not available for the requested duration. Maximum of 3 overlapping orders allowed.')
+        raise HTTPException(status_code=406,
+                            detail='The office is not available for the requested duration. Maximum of 3 overlapping orders allowed.')
     book_schedule_slot(db, order_data.office_id, order_data.duration)
     return create_order(db, order_data)
 
-def update_order_service(db: Session, order_id:int, order_data: OrderRequest):
+
+def update_order_service(db: Session, order_id: int, order_data: OrderRequest):
     order = get_order_by_id(db, order_id)
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
@@ -45,8 +47,10 @@ def update_order_service(db: Session, order_id:int, order_data: OrderRequest):
     db.refresh(order)
     return order
 
+
 def get_orders_by_client_id_service(db: Session, client_id: int):
     return get_orders_by_client_id(db, client_id)
+
 
 def cancel_order_service(order_id: int, db: Session):
     order = get_order_by_id(db, order_id)
@@ -77,6 +81,7 @@ def generate_receipt_service(order_id: int, db: Session):
 
     return pdf_file
 
+
 def send_email(to_address: str, subject: str, content: str, pdf_attachment: BytesIO):
     smtp_server = "smtp.gmail.com"
     smtp_port = 587
@@ -105,15 +110,37 @@ def send_email(to_address: str, subject: str, content: str, pdf_attachment: Byte
         print("Failed to send email:", e)
         raise
 
+
 def get_orders_managers(manager_id: int, db: Session):
-    orders = get_orders_by_manager_id(db, manager_id)
-    if not orders:
+    db_orders = get_orders_by_manager_id(db, manager_id)
+
+    if not db_orders:
         return HTTPException(status_code=404, detail="No orders found")
 
-    return orders
+    all_orders = []
+
+    for order in db_orders:
+        order_dict = {
+            "id": order.id,
+            "office_id": order.office_id,
+            "client_id": order.client_id,
+            "manager_id": order.manager_id,
+            "office_name": order.office_name,
+            "office_desc": order.office_desc,
+            "address": order.address,
+            "max_capacit": order.max_capacity,
+            "duration": order.duration,
+            "status": order.status,
+            "total_sum": order.total_sum
+        }
+        all_orders.append(order_dict)
+
+    return all_orders
+
 
 def create_schedule_service(office_id: int, db: Session, request: ScheduleRequest):
     return create_schedule(db, office_id, request)
+
 
 def update_order_status_service(db: Session, request: OrderStatusRequest):
     order = get_order_by_id(db, request.id)
