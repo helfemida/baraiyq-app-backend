@@ -1,6 +1,9 @@
 from pydantic import BaseModel
 from typing import List
 
+from src.schemas.schedule_schemas import OfficeSchedule
+
+
 class Feedbacks(BaseModel):
     client_id: int
     office_id: int
@@ -13,15 +16,6 @@ class OfficeFeedbacks(BaseModel):
     fullname: str
     description: str
     rating: float
-
-class OfficeSchedule(BaseModel):
-    id: int
-    day: str
-    start_time: str
-    end_time: str
-    is_booked: bool
-    class Config:
-        orm_mode = True
 
 class OfficeResponse(BaseModel):
     id: int

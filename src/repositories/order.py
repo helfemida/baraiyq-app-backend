@@ -1,7 +1,6 @@
 import string
 from datetime import datetime
 from io import BytesIO
-from typing import List
 
 from sqlalchemy import cast, Date, Time
 from sqlalchemy.orm import Session, joinedload
@@ -44,6 +43,9 @@ def get_order_by_id(db: Session, order_id: int):
 
 def get_orders_by_client_id(db: Session, client_id: int):
     return db.query(Order).options(joinedload(Order.services)).filter(Order.client_id == client_id).all()
+
+def get_orders_by_manager_id(db: Session, manager_id: int):
+    return db.query(Order).options(joinedload(Order.services)).filter(Order.manager_id == manager_id).all()
 
 def parse_func(duration: str):
     date, time_range = duration.split(" ")

@@ -9,8 +9,9 @@ from fastapi import HTTPException
 
 from sqlalchemy.orm import Session
 
+from src.repositories.managers import get_manager_by_id
 from src.repositories.order import generate_pdf_receipt, get_order_by_id, saving_receipt, update_services, \
-    book_schedule_slot, check_office_availability, create_order, get_orders_by_client_id
+    book_schedule_slot, check_office_availability, create_order, get_orders_by_client_id, get_orders_by_manager_id
 from src.schemas.order_schemas import OrderRequest
 
 
@@ -102,3 +103,10 @@ def send_email(to_address: str, subject: str, content: str, pdf_attachment: Byte
     except Exception as e:
         print("Failed to send email:", e)
         raise
+
+def get_orders_managers(manager_id: int, db: Session):
+    orders = get_orders_by_manager_id(db, manager_id)
+    if not orders:
+        return HTTPException(status_code=404, detail="No orders found")
+
+    return orders

@@ -5,6 +5,8 @@ from src.services.auth_service import authenticate_manager_email, authenticate_m
 from src.schemas.auth_schemas import SignInEmailRequest, SignInPhoneRequest
 from fastapi.responses import JSONResponse
 
+from src.services.order_service import get_orders_managers
+
 router = APIRouter()
 
 
@@ -27,4 +29,9 @@ def login_manager_phone(request: SignInPhoneRequest, db: Session = Depends(get_d
     headers = {"Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE"}
     content = {"message": "Login successful", "Auth": token}
     return JSONResponse(content=content, headers=headers)
+
+@router.get("/orders/{manager_id}")
+def get_orders(manager_id: int, db: Session = Depends(get_db)):
+    orders = get_orders_managers(manager_id, db)
+    return JSONResponse(content=orders, status_code=200)
 
