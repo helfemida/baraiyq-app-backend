@@ -9,9 +9,10 @@
   <component name="ChangeListManager">
     <list default="true" id="19ca0b5d-19bb-4c93-b744-fdf2e1d67ddb" name="Changes" comment="github actions reset 1.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositories/offices.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/offices.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routing/manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/order_schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/order_schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/order_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/order_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/offices_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/offices_service.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,6 +144,7 @@
       <workItem from="1731870286448" duration="6996000" />
       <workItem from="1732685919028" duration="1593000" />
       <workItem from="1732690389135" duration="4067000" />
+      <workItem from="1732722178361" duration="254000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />

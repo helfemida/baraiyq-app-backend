@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
-from src.repositories.offices import get_all_offices, get_office_by_id, add_feedback
+from src.repositories.offices import get_all_offices, get_office_by_id, add_feedback, get_office_by_name
 from src.schemas.office_schemas import Feedbacks
 
 
@@ -33,4 +33,5 @@ def create_feedback(db: Session, feedback_data: Feedbacks):
     feedback_dict = add_feedback(db, feedback_data)
     return feedback_dict
 
-
+def search_offices_service(db: Session, office_name: str):
+    return get_office_by_name(db, office_name)

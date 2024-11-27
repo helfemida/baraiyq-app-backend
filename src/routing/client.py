@@ -1,6 +1,6 @@
 from typing import List
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 from fastapi.responses import JSONResponse
 from starlette.responses import StreamingResponse
@@ -9,7 +9,7 @@ from src.database import get_db
 from src.repositories.clients import get_client_by_id
 from src.schemas.office_schemas import Feedbacks
 from src.schemas.order_schemas import OrderRequest, OrderResponse
-from src.services.offices_service import get_offices_info, get_single_office, create_feedback
+from src.services.offices_service import get_offices_info, get_single_office, create_feedback, search_offices_service
 
 from src.schemas.auth_schemas import SignUpRequest
 from src.services.auth_service import authenticate_client_phone, authenticate_client_email, verify_signup
@@ -45,6 +45,13 @@ def login_client_email(request: SignInEmailRequest, db: Session = Depends(get_db
 @router.get("/offices/")
 def get_offices(db: Session = Depends(get_db)):
     return JSONResponse({"offices": get_offices_info(db)})
+
+@router.get("/offices/search/")
+def search_office(
+        name: str = Query(..., description="Search term for the office name"),
+    db: Session = Depends(get_db)
+):
+    return search_offices_service(db, name)
 
 @router.get("/offices/{office_id}/")
 def read_offices(office_id: int, db: Session = Depends(get_db)):

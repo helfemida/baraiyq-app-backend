@@ -78,3 +78,6 @@ def add_feedback(db: Session, feedback_data: Feedbacks):
         "description": feedback.description,
         "rating": feedback.rating
     }
+
+def get_office_by_name(db: Session, office_name: str):
+    return db.query(Office).filter(Office.name.ilike(f"%{office_name}%")).all()

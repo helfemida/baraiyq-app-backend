@@ -1,0 +1,51 @@
+[33mcommit ed10b198f2389d4444446c814dbba18e97f79000[m
+Merge: cf4d232 cfccff4
+Author: Your Name <you@example.com>
+Date:   Fri Nov 15 03:46:27 2024 +0500
+
+    WIP on (no branch): cf4d232 added receipt generator
+
+[1mdiff --cc .idea/workspace.xml[m
+[1mindex 6c1cd64,6c1cd64..4fbbd40[m
+[1m--- a/.idea/workspace.xml[m
+[1m+++ b/.idea/workspace.xml[m
+[36m@@@ -55,23 -55,23 +55,23 @@@[m
+      <option name="hideEmptyMiddlePackages" value="true" />[m
+      <option name="showLibraryContents" value="true" />[m
+    </component>[m
+[31m--  <component name="PropertiesComponent"><![CDATA[{[m
+[31m--  "keyToString": {[m
+[31m--    "FastAPI.baraiyq-app-backend.executor": "Run",[m
+[31m--    "RunOnceActivity.ShowReadmeOnStart": "true",[m
+[31m--    "SHARE_PROJECT_CONFIGURATION_FILES": "true",[m
+[31m--    "git-widget-placeholder": "main",[m
+[31m--    "ignore.virus.scanning.warn.message": "true",[m
+[31m--    "last_opened_file_path": "C:/Users/shynk/PycharmProjects/baraiyq-app-backend",[m
+[31m--    "node.js.detected.package.eslint": "true",[m
+[31m--    "node.js.detected.package.tslint": "true",[m
+[31m--    "node.js.selected.package.eslint": "(autodetect)",[m
+[31m--    "node.js.selected.package.tslint": "(autodetect)",[m
+[31m--    "nodejs_package_manager_path": "npm",[m
+[31m--    "settings.editor.selected.configurable": "preferences.pluginManager",[m
+[31m--    "vue.rearranger.settings.migration": "true"[m
+[32m++  <component name="PropertiesComponent">{[m
+[32m++  &quot;keyToString&quot;: {[m
+[32m++    &quot;FastAPI.baraiyq-app-backend.executor&quot;: &quot;Run&quot;,[m
+[32m++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,[m
+[32m++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,[m
+[32m++    &quot;git-widget-placeholder&quot;: &quot;main&quot;,[m
+[32m++    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,[m
+[32m++    &quot;last_opened_file_path&quot;: &quot;C:/Users/shynk/PycharmProjects/baraiyq-app-backend&quot;,[m
+[32m++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,[m
+[32m++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,[m
+[32m++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,[m
+[32m++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,[m
+[32m++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,[m
+[32m++    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,[m
+[32m++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;[m
+    }[m
+[31m--}]]></component>[m
+[32m++}</component>[m
+    <component name="RecentsManager">[m
+      <key name="CopyFile.RECENT_KEYS">[m
+        <recent name="$PROJECT_DIR$" />[m
