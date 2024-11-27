@@ -8,6 +8,7 @@ from src.schemas.office_schemas import Feedbacks
 def get_offices_info(db: Session):
     db_offices = get_all_offices(db=db)
 
+
     if not db_offices:
         raise HTTPException(status_code=404, detail="no offices available")
 

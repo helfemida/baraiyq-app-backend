@@ -14,6 +14,7 @@ from src.repositories.order import generate_pdf_receipt, get_order_by_id, saving
 from src.repositories.schedules import create_schedule
 from src.schemas.order_schemas import OrderRequest, OrderStatusRequest
 from src.schemas.schedule_schemas import ScheduleRequest
+from src.repositories.clients import get_client_by_id
 
 
 def create_order_service(db: Session, order_data: OrderRequest):
@@ -120,10 +121,12 @@ def get_orders_managers(manager_id: int, db: Session):
     all_orders = []
 
     for order in db_orders:
+        client = get_client_by_id(db, order.client_id)
         order_dict = {
             "id": order.id,
             "office_id": order.office_id,
             "client_id": order.client_id,
+            "client_email": client.email,
             "manager_id": order.manager_id,
             "office_name": order.office_name,
             "office_desc": order.office_desc,
