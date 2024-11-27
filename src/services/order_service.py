@@ -12,7 +12,7 @@ from sqlalchemy.orm import Session
 from src.repositories.order import generate_pdf_receipt, get_order_by_id, saving_receipt, update_services, \
     book_schedule_slot, check_office_availability, create_order, get_orders_by_client_id, get_orders_by_manager_id
 from src.repositories.schedules import create_schedule
-from src.schemas.order_schemas import OrderRequest
+from src.schemas.order_schemas import OrderRequest, OrderStatusRequest
 from src.schemas.schedule_schemas import ScheduleRequest
 
 
@@ -114,3 +114,9 @@ def get_orders_managers(manager_id: int, db: Session):
 
 def create_schedule_service(office_id: int, db: Session, request: ScheduleRequest):
     return create_schedule(db, office_id, request)
+
+def update_order_status_service(db: Session, request: OrderStatusRequest):
+    order = get_order_by_id(db, request.id)
+    order.status = request.status
+    db.commit()
+    db.refresh(order)

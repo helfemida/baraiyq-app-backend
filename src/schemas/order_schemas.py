@@ -39,3 +39,7 @@ class OrderResponse(BaseModel):
 
     class Config:
         orm_mode = True
+
+class OrderStatusRequest(BaseModel):
+    id: int
+    status: str
