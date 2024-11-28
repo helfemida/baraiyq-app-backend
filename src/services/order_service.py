@@ -9,12 +9,15 @@ from fastapi import HTTPException
 
 from sqlalchemy.orm import Session
 
+from src.models import Order
 from src.repositories.order import generate_pdf_receipt, get_order_by_id, saving_receipt, update_services, \
-    book_schedule_slot, check_office_availability, create_order, get_orders_by_client_id, get_orders_by_manager_id
+    book_schedule_slot, check_office_availability, create_order, get_orders_by_client_id, get_orders_by_manager_id, \
+    get_all_orders
 from src.repositories.schedules import create_schedule
 from src.schemas.order_schemas import OrderRequest, OrderStatusRequest
 from src.schemas.schedule_schemas import ScheduleRequest
 from src.repositories.clients import get_client_by_id
+from src.repositories.managers import get_admin_privelegy_by_manager_id
 
 
 def create_order_service(db: Session, order_data: OrderRequest):
@@ -112,12 +115,24 @@ def send_email(to_address: str, subject: str, content: str, pdf_attachment: Byte
         raise
 
 
-def get_orders_managers(manager_id: int, db: Session):
-    db_orders = get_orders_by_manager_id(db, manager_id)
+def get_all_orders_by_privelegy(manager_id: int, db: Session):
+    if get_admin_privelegy_by_manager_id(db, manager_id):
+        return get_all_orders(db)
+    else:
+        return HTTPException(status_code=402, detail="Forbidden")
 
-    if not db_orders:
+
+def get_orders_managers(manager_id: int, db: Session):
+    print(manager_id, get_admin_privelegy_by_manager_id(db, manager_id))
+    if get_admin_privelegy_by_manager_id(db, manager_id):
+        return toJsonSerializable(get_all_orders(db), db)
+    elif get_orders_by_manager_id(db, manager_id):
+        return toJsonSerializable(get_orders_by_manager_id(db, manager_id), db)
+    else:
         return HTTPException(status_code=404, detail="No orders found")
 
+
+def toJsonSerializable(db_orders: list[Order], db: Session) -> list:
     all_orders = []
 
     for order in db_orders:

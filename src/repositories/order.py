@@ -47,6 +47,9 @@ def get_orders_by_client_id(db: Session, client_id: int):
 def get_orders_by_manager_id(db: Session, manager_id: int):
     return db.query(Order).options(joinedload(Order.services)).filter(Order.manager_id == manager_id).all()
 
+def get_all_orders(db: Session):
+    return db.query(Order).all()
+
 def parse_func(duration: str):
     date, time_range = duration.split(" ")
     start_time, end_time = time_range.split("-")

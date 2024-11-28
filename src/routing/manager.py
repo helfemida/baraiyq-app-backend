@@ -7,7 +7,7 @@ from src.services.auth_service import authenticate_manager_email, authenticate_m
 from src.schemas.auth_schemas import SignInEmailRequest, SignInPhoneRequest
 from fastapi.responses import JSONResponse
 
-from src.services.order_service import get_orders_managers, create_schedule_service, update_order_status_service
+from src.services.order_service import get_orders_managers, create_schedule_service, update_order_status_service, get_all_orders_by_privelegy
 
 router = APIRouter()
 
