@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from src.models import Office, ScheduleSlot, Feedback, Client
-from src.schemas.office_schemas import Feedbacks
+from src.schemas.office_schemas import Feedbacks, OfficeRequest
 
 
 def get_all_offices(db: Session):
@@ -81,3 +81,18 @@ def add_feedback(db: Session, feedback_data: Feedbacks):
 
 def get_office_by_name(db: Session, office_name: str):
     return db.query(Office).filter(Office.name.ilike(f"%{office_name}%")).all()
+
+def create_office_manager(db: Session, request: OfficeRequest):
+    office = Office(
+        name = request.name,
+        description = request.description,
+        address = request.address,
+        rating = request.rating,
+        capacity = request.capacity,
+        lat = request.lat,
+        lng = request.lng
+    )
+    db.add(office)
+    db.commit()
+    db.refresh(office)
+    return office

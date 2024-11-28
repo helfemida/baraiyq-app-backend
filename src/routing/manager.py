@@ -1,12 +1,14 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from src.database import get_db
+from src.schemas.office_schemas import OfficeRequest
 from src.schemas.order_schemas import OrderStatusRequest
 from src.schemas.schedule_schemas import ScheduleRequest
 from src.services.auth_service import authenticate_manager_email, authenticate_manager_phone
 from src.schemas.auth_schemas import SignInEmailRequest, SignInPhoneRequest
 from fastapi.responses import JSONResponse
 
+from src.services.offices_service import create_office_service
 from src.services.order_service import get_orders_managers, create_schedule_service, update_order_status_service
 
 router = APIRouter()
@@ -46,3 +48,8 @@ def update_order_status(request: OrderStatusRequest, db: Session = Depends(get_d
 def create_schedules(office_id: int, request: ScheduleRequest, db:Session = Depends(get_db)):
     schedule = create_schedule_service(office_id, db, request)
     return {"message": f"Schedule {schedule.id} created successfully!"}
+
+@router.post("/create-office/")
+def create_office(request: OfficeRequest, db:Session = Depends(get_db)):
+    office = create_office_service(db, request)
+    return {"message": f"Office {office.id} created successfully!"}
