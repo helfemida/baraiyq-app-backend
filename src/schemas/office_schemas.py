@@ -17,6 +17,15 @@ class OfficeFeedbacks(BaseModel):
     description: str
     rating: float
 
+class OfficeRequest(BaseModel):
+    name: str
+    description: str
+    address: str
+    rating: float
+    capacity: int
+    lat: float
+    lng: float
+
 class OfficeResponse(BaseModel):
     id: int
     name: str

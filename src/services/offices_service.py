@@ -1,8 +1,9 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
-from src.repositories.offices import get_all_offices, get_office_by_id, add_feedback, get_office_by_name
-from src.schemas.office_schemas import Feedbacks
+from src.repositories.offices import get_all_offices, get_office_by_id, add_feedback, get_office_by_name, \
+    create_office_manager
+from src.schemas.office_schemas import Feedbacks, OfficeRequest
 
 
 def get_offices_info(db: Session):
@@ -36,3 +37,6 @@ def create_feedback(db: Session, feedback_data: Feedbacks):
 
 def search_offices_service(db: Session, office_name: str):
     return get_office_by_name(db, office_name)
+
+def create_office_service(db: Session, request: OfficeRequest):
+    return create_office_manager(db, request)
