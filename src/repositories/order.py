@@ -4,7 +4,7 @@ from io import BytesIO
 
 from sqlalchemy import cast, Date, Time
 from sqlalchemy.orm import Session, joinedload
-from src.models import Order, OrderService, ScheduleSlot, Receipt
+from src.models import Order, OrderService, ScheduleSlot, Receipt, Manager
 from src.repositories.managers import assign_manager, get_last_assigned_manager
 from src.schemas.order_schemas import OrderRequest
 from reportlab.lib import colors
@@ -18,7 +18,7 @@ def create_order(db: Session, order_data: OrderRequest):
     db_order = Order(
         office_id=order_data.office_id,
         client_id=order_data.client_id,
-        manager_id = next_manager_id,
+        manager_id=next_manager_id,
         office_name=order_data.office_name,
         office_desc=order_data.office_desc,
         address=order_data.address,
@@ -160,3 +160,7 @@ def generate_pdf_receipt(order_data):
     # Move buffer cursor to the beginning and return the PDF data
     buffer.seek(0)
     return buffer  # Return PDF as a BytesIO object
+
+
+def get_manager_by_order_id(db: Session, order_id: int):
+    return db.query(Manager).join(Order).filter(Order.id == order_id).first()

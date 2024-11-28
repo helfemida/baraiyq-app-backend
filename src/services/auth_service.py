@@ -1,3 +1,5 @@
+import logging
+
 from fastapi import HTTPException
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
@@ -66,13 +68,14 @@ def authenticate_client_phone(db: Session, phone: str, password: str):
 
     return {"access_token": access_token}
 
-def authenticate_manager_email(db: Session, phone: str, password: str):
-    db_manager = get_manager_by_email(db, phone)
+def authenticate_manager_email(db: Session, email: str, password: str):
+    db_manager = get_manager_by_email(db, email)
     if not db_manager:
         raise HTTPException(status_code=400, detail="No such email.")
 
     if password != db_manager.password:
-        raise HTTPException(status_code=400, detail="Invalid email or password.")
+        print("manager pass: ", db_manager.password)
+        raise HTTPException(status_code=400, detail="Invalid password.")
 
     return {
         "id": db_manager.id,

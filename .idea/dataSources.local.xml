@@ -13,5 +13,20 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
+    <data-source name="baraiyq-app:us-central1:database" uuid="5f853395-88ba-44c9-8d2b-7422c70b84c5">
+      <database-info product="PostgreSQL" version="16.4" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.7.3" dbms="POSTGRES" exact-version="16.4" exact-driver-version="42.7">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>postgres</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="database" qname="@">
+            <node kind="schema" qname="@" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
   </component>
 </project>

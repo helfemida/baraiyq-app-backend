@@ -16,5 +16,12 @@
         </library>
       </libraries>
     </data-source>
+    <data-source source="LOCAL" name="baraiyq-app:us-central1:database" uuid="5f853395-88ba-44c9-8d2b-7422c70b84c5">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://34.31.65.216:5432/baraiyq</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

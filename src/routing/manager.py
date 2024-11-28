@@ -40,6 +40,7 @@ def get_orders(manager_id: int, db: Session = Depends(get_db)):
 @router.put("/orders/{order_id}/status/")
 def update_order_status(request: OrderStatusRequest, db: Session = Depends(get_db)):
     update_order_status_service(db, request)
+
     return JSONResponse(content={"message": "Order status updated successfully"}, status_code=200)
 
 @router.post("/create-schedule/{office_id}/")

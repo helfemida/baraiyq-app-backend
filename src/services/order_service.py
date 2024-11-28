@@ -9,15 +9,17 @@ from fastapi import HTTPException
 
 from sqlalchemy.orm import Session
 
-from src.models import Order
+from src.models import Order, Manager, Client
 from src.repositories.order import generate_pdf_receipt, get_order_by_id, saving_receipt, update_services, \
     book_schedule_slot, check_office_availability, create_order, get_orders_by_client_id, get_orders_by_manager_id, \
-    get_all_orders
+    get_all_orders, get_manager_by_order_id
 from src.repositories.schedules import create_schedule
-from src.schemas.order_schemas import OrderRequest, OrderStatusRequest
+from src.schemas.office_schemas import OfficeResponse
+from src.schemas.order_schemas import OrderRequest, OrderStatusRequest, OrderByManagerResponse, OrderServiceResponse
 from src.schemas.schedule_schemas import ScheduleRequest
 from src.repositories.clients import get_client_by_id
-from src.repositories.managers import get_admin_privelegy_by_manager_id
+from src.repositories.managers import get_admin_privelegy_by_manager_id, get_manager_by_id
+from src.repositories.offices import get_office_by_id
 
 
 def create_order_service(db: Session, order_data: OrderRequest):
@@ -89,8 +91,8 @@ def generate_receipt_service(order_id: int, db: Session):
 def send_email(to_address: str, subject: str, content: str, pdf_attachment: BytesIO):
     smtp_server = "smtp.gmail.com"
     smtp_port = 587
-    sender_email = "nuspekovalihan@gmail.com"
-    sender_password = "sbwlgtbryqkgynvv"
+    sender_email = "220107021@stu.sdu.edu.kz"
+    sender_password = "ale4ka2004"
     sender_name = "baraiyq.kz"
 
     message = MIMEMultipart()
@@ -123,7 +125,6 @@ def get_all_orders_by_privelegy(manager_id: int, db: Session):
 
 
 def get_orders_managers(manager_id: int, db: Session):
-    print(manager_id, get_admin_privelegy_by_manager_id(db, manager_id))
     if get_admin_privelegy_by_manager_id(db, manager_id):
         return toJsonSerializable(get_all_orders(db), db)
     elif get_orders_by_manager_id(db, manager_id):
@@ -132,24 +133,39 @@ def get_orders_managers(manager_id: int, db: Session):
         return HTTPException(status_code=404, detail="No orders found")
 
 
-def toJsonSerializable(db_orders: list[Order], db: Session) -> list:
+def toJsonSerializable(db_orders: list[Order], db: Session):
     all_orders = []
 
     for order in db_orders:
-        client = get_client_by_id(db, order.client_id)
+        db_client = get_client_by_id(db, order.client_id)
+        db_manager = get_manager_by_id(db, order.manager_id)
+        db_office = get_office_by_id(db, order.office_id)
+        services = []
+
+        for service in order.services:
+            dict_service = {
+                "id": service.id,
+                "service_name": service.service_name
+            }
+            services.append(dict_service)
+
         order_dict = {
             "id": order.id,
-            "office_id": order.office_id,
-            "client_id": order.client_id,
-            "client_email": client.email,
-            "manager_id": order.manager_id,
-            "office_name": order.office_name,
-            "office_desc": order.office_desc,
-            "address": order.address,
-            "max_capacit": order.max_capacity,
+            "client_id": db_client.id,
+            "client_name": db_client.name,
+            "client_surname": db_client.surname,
+            "manager_id": db_manager.id,
+            "manager_name": db_manager.name,
+            "manager_surname": db_manager.surname,
+            "office_id": db_office.get("id"),
+            "office_name": db_office.get("name"),
+            "office_desc": db_office.get("description"),
+            "address": db_office.get("address"),
+            "max_capacity": db_office.get("capacity"),
             "duration": order.duration,
             "status": order.status,
-            "total_sum": order.total_sum
+            "total_sum": order.total_sum,
+            "services": services
         }
         all_orders.append(order_dict)
 
@@ -162,6 +178,18 @@ def create_schedule_service(office_id: int, db: Session, request: ScheduleReques
 
 def update_order_status_service(db: Session, request: OrderStatusRequest):
     order = get_order_by_id(db, request.id)
+
     order.status = request.status
     db.commit()
     db.refresh(order)
+
+    client = get_client_by_id(db, order.client_id)
+    manager = get_manager_by_order_id(db, order.id)
+    pdf = generate_receipt_service(order.office_id, db)
+
+    send_email(to_address=client.email,
+               subject="Baraiyq: Order Status Changed By Manager",
+               content=f"Your Request for creating the order was reviewed by manager and status "
+                       f"is changed to {request.status} by Manager {manager.name} {manager.surname}"
+                       f". \n Your can see the details in your dashboard: https://baraiyq.vercel.app/dashboard/my-orders",
+               pdf_attachment=pdf)
