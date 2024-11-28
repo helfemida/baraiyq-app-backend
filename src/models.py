@@ -27,7 +27,7 @@ class Manager(Base):
     surname = Column(String)
     email = Column(String, unique=True, index=True)
     phone = Column(String, unique=True)
-    password = Column(String),
+    password = Column(String)
     admin_privelegy = Column(Boolean)
 
     orders = relationship("Order", back_populates="manager")
