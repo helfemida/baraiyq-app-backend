@@ -154,6 +154,7 @@ def toJsonSerializable(db_orders: list[Order], db: Session):
             "client_id": db_client.id,
             "client_name": db_client.name,
             "client_surname": db_client.surname,
+            "client_phone": db_client.phone,
             "manager_id": db_manager.id,
             "manager_name": db_manager.name,
             "manager_surname": db_manager.surname,
