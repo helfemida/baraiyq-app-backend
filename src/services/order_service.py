@@ -91,8 +91,8 @@ def generate_receipt_service(order_id: int, db: Session):
 def send_email(to_address: str, subject: str, content: str, pdf_attachment: BytesIO):
     smtp_server = "smtp.gmail.com"
     smtp_port = 587
-    sender_email = "220107021@stu.sdu.edu.kz"
-    sender_password = "ale4ka2004"
+    sender_email = "nuspekovalihan@gmail.com"
+    sender_password = "sbwlgtbryqkgynvv"
     sender_name = "baraiyq.kz"
 
     message = MIMEMultipart()
@@ -180,18 +180,6 @@ def create_schedule_service(office_id: int, db: Session, request: ScheduleReques
 
 def update_order_status_service(db: Session, request: OrderStatusRequest):
     order = get_order_by_id(db, request.id)
-
     order.status = request.status
     db.commit()
     db.refresh(order)
-
-    client = get_client_by_id(db, order.client_id)
-    manager = get_manager_by_order_id(db, order.id)
-    pdf = generate_receipt_service(order.office_id, db)
-
-    send_email(to_address=client.email,
-               subject="Baraiyq: Order Status Changed By Manager",
-               content=f"Your Request for creating the order was reviewed by manager and status "
-                       f"is changed to {request.status} by Manager {manager.name} {manager.surname}"
-                       f". \n Your can see the details in your dashboard: https://baraiyq.vercel.app/dashboard/my-orders",
-               pdf_attachment=pdf)

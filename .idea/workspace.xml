@@ -8,10 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19ca0b5d-19bb-4c93-b744-fdf2e1d67ddb" name="Changes" comment="kjncdnlsdnclwdnv">
-      <change afterPath="$PROJECT_DIR$/tests/create_schedules.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/managers_get_orders.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/update_order_status.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/order_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/order_service.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +141,7 @@
       <workItem from="1732733233463" duration="1000" />
       <workItem from="1732733250899" duration="7381000" />
       <workItem from="1732776546485" duration="2583000" />
-      <workItem from="1732780167417" duration="11072000" />
+      <workItem from="1732780167417" duration="13124000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -457,7 +455,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732791130958</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="kjncdnlsdnclwdnv">
+      <option name="closed" value="true" />
+      <created>1732793840842</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1732793840842</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -518,6 +524,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="kjncdnlsdnclwdnv" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/baraiyq_app_backend$baraiyq_app_backend.coverage" NAME="baraiyq-app-backend Coverage Results" MODIFIED="1732790342975" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/baraiyq_app_backend$baraiyq_app_backend.coverage" NAME="baraiyq-app-backend Coverage Results" MODIFIED="1732794770032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
