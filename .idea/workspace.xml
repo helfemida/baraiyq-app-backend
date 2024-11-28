@@ -7,13 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19ca0b5d-19bb-4c93-b744-fdf2e1d67ddb" name="Changes" comment="kjncdnlsdnclwdnv">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repositories/offices.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/offices.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routing/manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/office_schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/office_schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/offices_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/offices_service.py" afterDir="false" />
-    </list>
+    <list default="true" id="19ca0b5d-19bb-4c93-b744-fdf2e1d67ddb" name="Changes" comment="kjncdnlsdnclwdnv" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -528,6 +522,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="kjncdnlsdnclwdnv" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/baraiyq_app_backend$baraiyq_app_backend.coverage" NAME="baraiyq-app-backend Coverage Results" MODIFIED="1732825478648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/baraiyq_app_backend$baraiyq_app_backend.coverage" NAME="baraiyq-app-backend Coverage Results" MODIFIED="1732826216855" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

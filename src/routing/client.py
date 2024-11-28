@@ -77,7 +77,7 @@ def get_order(order_id: int, db: Session = Depends(get_db)):
 def update_order(order_id: int, order: OrderRequest, db: Session = Depends(get_db)):
     return update_order_service(db, order_id, order)
 
-@router.delete("/order/cancel/{order_id}/")
+@router.put("/order/cancel/{order_id}/")
 def cancel_order(order_id: int, db: Session = Depends(get_db)):
     cancel_order_service(order_id, db)
     return {"message": f"Order {order_id} cancelled successfully"}
