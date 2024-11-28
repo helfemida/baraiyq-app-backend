@@ -65,24 +65,24 @@ def submit_feedback(feedback: Feedbacks, db: Session = Depends(get_db)):
 def place_order(order: OrderRequest, db: Session = Depends(get_db)):
     return create_order_service(db, order)
 
-@router.get("/orders/{client_id}", response_model=List[OrderResponse])
+@router.get("/orders/{client_id}/", response_model=List[OrderResponse])
 def get_client_orders(client_id: int, db: Session = Depends(get_db)):
     return get_orders_by_client_id_service(db, client_id)
 
-@router.get("/orders/order/{order_id}", response_model=OrderResponse)
+@router.get("/orders/order/{order_id}/", response_model=OrderResponse)
 def get_order(order_id: int, db: Session = Depends(get_db)):
     return get_order_by_id(db, order_id)
 
-@router.put("/order/update/{order_id}", response_model=OrderResponse)
+@router.put("/order/update/{order_id}/", response_model=OrderResponse)
 def update_order(order_id: int, order: OrderRequest, db: Session = Depends(get_db)):
     return update_order_service(db, order_id, order)
 
-@router.delete("/order/cancel/{order_id}")
+@router.delete("/order/cancel/{order_id}/")
 def cancel_order(order_id: int, db: Session = Depends(get_db)):
     cancel_order_service(order_id, db)
     return {"message": f"Order {order_id} cancelled successfully"}
 
-@router.get("/order/payment/{order_id}")
+@router.get("/order/payment/{order_id}/")
 def generate_receipt(order_id: int, db: Session = Depends(get_db)):
     pdf_file = generate_receipt_service(order_id, db)
 
@@ -92,7 +92,7 @@ def generate_receipt(order_id: int, db: Session = Depends(get_db)):
         headers={"Content-Disposition": f"attachment; filename=receipt_{order_id}.pdf"}
     )
 
-@router.get("/orders/payment/email/{order_id}")
+@router.get("/orders/payment/email/{order_id}/")
 def send_receipt_email(order_id: int, db: Session = Depends(get_db)):
     order = get_order_by_id(db, order_id)
 
