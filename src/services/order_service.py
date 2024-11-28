@@ -183,3 +183,15 @@ def update_order_status_service(db: Session, request: OrderStatusRequest):
     order.status = request.status
     db.commit()
     db.refresh(order)
+    client = get_client_by_id(db, order.client_id)
+    manager = get_manager_by_order_id(db, order.id)
+    pdf = generate_receipt_service(order.id, db)
+    send_email(to_address=client.email,
+               subject="Baraiyq: Order Status Changed By Manager",
+               content=(
+                   f"Your Request for creating the order was reviewed by the manager, "
+                   f"and the status has been updated to: {request.status.upper()}.\n\n"
+                   f"Manager: {manager.name} {manager.surname}\n"
+                   f"You can view the details in your dashboard: https://baraiyq.vercel.app/dashboard/my-orders"
+               ),
+               pdf_attachment=pdf)
