@@ -2,10 +2,10 @@ from datetime import datetime
 
 from sqlalchemy.orm import Session
 
-from src.models import AlternativeRequest
+from src.models import AlternativeRequest, AlternativeResponse
 from src.repositories.clients import get_client_by_id
 from src.repositories.offices import get_office_by_id
-from src.schemas.alternative_schemas import AlternativeRequestBase
+from src.schemas.alternative_schemas import AlternativeRequestBase, AlternativeResponseBase
 
 
 def submit_alternatives(request: AlternativeRequestBase, db: Session):
@@ -23,6 +23,21 @@ def submit_alternatives(request: AlternativeRequestBase, db: Session):
 
 def get_all_requests(db: Session):
     return db.query(AlternativeRequest).all()
+
+def get_request_by_id(db: Session, request_id: int):
+    return db.query(AlternativeRequest).filter(AlternativeRequest.id == request_id).first()
+
+def add_response(db: Session, request: AlternativeResponseBase):
+    response = AlternativeResponse(
+        request_id = request.request_id,
+        manager_id = request.manager_id,
+        response_details = request.response_details
+    )
+
+    db.add(response)
+    db.commit()
+    db.refresh(response)
+    return response
 
 def toJsonSerializable(db_alt: list[AlternativeRequestBase], db: Session):
     all_alternatives = []
