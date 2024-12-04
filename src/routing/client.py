@@ -7,8 +7,10 @@ from starlette.responses import StreamingResponse
 
 from src.database import get_db
 from src.repositories.clients import get_client_by_id
+from src.schemas.alternative_schemas import AlternativeRequestBase
 from src.schemas.office_schemas import Feedbacks
 from src.schemas.order_schemas import OrderRequest, OrderResponse
+from src.services.alternatives_service import submit_alternatives_service
 from src.services.offices_service import get_offices_info, get_single_office, create_feedback, search_offices_service
 
 from src.schemas.auth_schemas import SignUpRequest
@@ -105,3 +107,8 @@ def send_receipt_email(order_id: int, db: Session = Depends(get_db)):
     pdf_receipt = generate_receipt_service(order_id, db)
     send_email(recipient, subject, content, pdf_receipt)
     return JSONResponse(status_code=200, content={"message": "Receipt sent successfully"})
+
+@router.post("/alternative/request/")
+def submit_alternative(request: AlternativeRequestBase, db: Session = Depends(get_db)):
+    alternative = submit_alternatives_service(request, db)
+    return JSONResponse(status_code=200, content={"message": f"Alternative request {alternative.id} sent successfully"})

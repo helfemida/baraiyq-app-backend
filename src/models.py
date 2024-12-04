@@ -1,7 +1,7 @@
 import enum
 from datetime import datetime
 
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Float, Enum, DateTime
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Float, Enum, DateTime, TIMESTAMP, func
 from sqlalchemy.orm import relationship
 from src.database import Base
 
@@ -17,6 +17,7 @@ class Client(Base):
     date_of_birth = Column(String)
 
     feedbacks = relationship("Feedback", back_populates="client")
+    alternative_requests = relationship("AlternativeRequest", back_populates="client")
 
 
 class Manager(Base):
@@ -31,6 +32,7 @@ class Manager(Base):
     admin_privelegy = Column(Boolean)
 
     orders = relationship("Order", back_populates="manager")
+    alternative_responses = relationship("AlternativeResponse", back_populates="manager")
 
 
 class Feedback(Base):
@@ -59,6 +61,7 @@ class Office(Base):
     capacity = Column(Integer)
 
     schedules = relationship("ScheduleSlot", back_populates="office")
+    alternative_requests = relationship("AlternativeRequest", back_populates="office")
 
 
 class ScheduleSlot(Base):
@@ -117,3 +120,31 @@ class Receipt(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
 
     order = relationship("Order")
+
+class AlternativeRequest(Base):
+    __tablename__ = "alternative_requests"
+
+    id = Column(Integer, primary_key=True, index=True)
+    client_id = Column(Integer, ForeignKey("clients.id"), nullable=False)
+    office_id = Column(Integer, ForeignKey("offices.id"), nullable=False)
+    requested_date = Column(String, nullable=False)
+    people_amount = Column(Integer, nullable=False)
+    created_at = Column(TIMESTAMP, server_default=func.now(), nullable=False)
+
+    # Relationships
+    client = relationship("Client", back_populates="alternative_requests")
+    office = relationship("Office", back_populates="alternative_requests")
+    responses = relationship("AlternativeResponse", back_populates="request")
+
+class AlternativeResponse(Base):
+    __tablename__ = "alternative_responses"
+
+    id = Column(Integer, primary_key=True, index=True)
+    request_id = Column(Integer, ForeignKey("alternative_requests.id"), nullable=False)
+    manager_id = Column(Integer, ForeignKey("managers.id"), nullable=False)
+    response_details = Column(String, nullable=False)
+    created_at = Column(TIMESTAMP, server_default=func.now(), nullable=False)
+
+    # Relationships
+    request = relationship("AlternativeRequest", back_populates="responses")
+    manager = relationship("Manager", back_populates="alternative_responses")
