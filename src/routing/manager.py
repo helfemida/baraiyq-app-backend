@@ -4,6 +4,7 @@ from src.database import get_db
 from src.schemas.office_schemas import OfficeRequest
 from src.schemas.order_schemas import OrderStatusRequest
 from src.schemas.schedule_schemas import ScheduleRequest
+from src.services.alternatives_service import get_all_alternatives_service
 from src.services.auth_service import authenticate_manager_email, authenticate_manager_phone
 from src.schemas.auth_schemas import SignInEmailRequest, SignInPhoneRequest
 from fastapi.responses import JSONResponse
@@ -54,3 +55,8 @@ def create_schedules(office_id: int, request: ScheduleRequest, db:Session = Depe
 def create_office(request: OfficeRequest, db:Session = Depends(get_db)):
     office = create_office_service(db, request)
     return {"message": f"Office {office.id} created successfully!"}
+
+@router.get("/alternative/requests/")
+def get_alternatives_requests(db:Session = Depends(get_db)):
+    alternatives = get_all_alternatives_service(db)
+    return JSONResponse(content=alternatives, status_code=200)
