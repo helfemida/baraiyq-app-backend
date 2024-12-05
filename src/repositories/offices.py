@@ -180,6 +180,11 @@ def update_office(db: Session, request: OfficeUpdateRequest):
 
 
 def delete_office(db: Session, office_id: int):
-    db.query(Office).filter(Office.id == office_id).delete()
+    office = db.query(Office).filter(Office.id == office_id).first()
+    db.query(ScheduleSlot).filter(ScheduleSlot.office_id == office_id).delete()
+    db.query(Feedback).filter(Feedback.office_id == office_id).delete()
+
+    db.delete(office)
     db.commit()
+
     return True

@@ -66,9 +66,8 @@ def create_office(request: OfficeRequest, db: Session = Depends(get_db)):
 
 @router.put("/update-office/")
 def update_office(request: OfficeUpdateRequest, db: Session = Depends(get_db)):
-    office = update_office_by_id(db, request)
-    response = {"message": f"Office by id {request.id} is updated", "office": office}
-    return JSONResponse(content=response, status_code=200)
+    update_office_by_id(db, request)
+    return JSONResponse(content=f"Office by id {id} is deleted successfully", status_code=200)
 
 
 @router.delete("/delete-office/")
