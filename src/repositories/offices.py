@@ -1,6 +1,7 @@
+from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from src.models import Office, ScheduleSlot, Feedback, Client
-from src.schemas.office_schemas import Feedbacks, OfficeFeedbacks, OfficeResponse, OfficeRequest
+from src.schemas.office_schemas import Feedbacks, OfficeFeedbacks, OfficeResponse, OfficeRequest, OfficeUpdateRequest
 from src.schemas.schedule_schemas import OfficeSchedule
 
 
@@ -88,19 +89,23 @@ def get_office_dto_by_id(db: Session, office_id: int):
 
 
 def get_office_by_id(db: Session, office_id: int):
-    db_office = db.query(Office).filter(Office.id == office_id).all()
+    db_office = db.query(Office).filter(Office.id == office_id).first()
+
+    if db_office is None:
+        raise HTTPException(status_code=404, detail="Office not found")
+
     db_feedbacks = get_office_feedbacks(db, office_id)
     db_schedule = get_office_schedules(db, office_id)
 
     result_office = {
-        "id": db_office[0].id,
-        "name": db_office[0].name,
-        "description": db_office[0].description,
-        "address": db_office[0].address,
-        "rating": db_office[0].rating,
-        "capacity": db_office[0].capacity,
-        "lat": db_office[0].lat,
-        "lng": db_office[0].lng,
+        "id": db_office.id,
+        "name": db_office.name,
+        "description": db_office.description,
+        "address": db_office.address,
+        "rating": db_office.rating,
+        "capacity": db_office.capacity,
+        "lat": db_office.lat,
+        "lng": db_office.lng,
         "schedule": db_schedule,
         "feedbacks": db_feedbacks
     }
@@ -133,17 +138,48 @@ def add_feedback(db: Session, feedback_data: Feedbacks):
 def get_office_by_name(db: Session, office_name: str):
     return db.query(Office).filter(Office.name.ilike(f"%{office_name}%")).all()
 
+
 def create_office_manager(db: Session, request: OfficeRequest):
     office = Office(
-        name = request.name,
-        description = request.description,
-        address = request.address,
-        rating = request.rating,
-        capacity = request.capacity,
-        lat = request.lat,
-        lng = request.lng
+        name=request.name,
+        description=request.description,
+        address=request.address,
+        rating=request.rating,
+        capacity=request.capacity,
+        lat=request.lat,
+        lng=request.lng
     )
     db.add(office)
     db.commit()
     db.refresh(office)
     return office
+
+
+def update_office(db: Session, request: OfficeUpdateRequest):
+    office = db.query(Office).filter(Office.id == request.id).first()
+
+    if request.name is not None:
+        office.name = request.name
+    if request.description is not None:
+        office.description = request.description
+    if request.address is not None:
+        office.address = request.address
+    if request.rating is not None:
+        office.rating = request.rating
+    if request.capacity is not None:
+        office.capacity = request.capacity
+    if request.lat is not None:
+        office.lat = request.lat
+    if request.lng is not None:
+        office.lng = request.lng
+
+    db.commit()
+    db.refresh(office)
+
+    return office
+
+
+def delete_office(db: Session, office_id: int):
+    db.query(Office).filter(Office.id == office_id).delete()
+    db.commit()
+    return True

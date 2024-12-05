@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 from src.schemas.schedule_schemas import OfficeSchedule
 
@@ -11,11 +11,13 @@ class Feedbacks(BaseModel):
     description: str
     rating: float
 
+
 class OfficeFeedbacks(BaseModel):
     id: int
     fullname: str
     description: str
     rating: float
+
 
 class OfficeRequest(BaseModel):
     name: str
@@ -25,6 +27,18 @@ class OfficeRequest(BaseModel):
     capacity: int
     lat: float
     lng: float
+
+
+class OfficeUpdateRequest(BaseModel):
+    id: int
+    name: Optional[str] = None
+    description: Optional[str] = None
+    address: Optional[str] = None
+    rating: Optional[float] = None
+    capacity: Optional[int] = None
+    lat: Optional[float] = None
+    lng: Optional[float] = None
+
 
 class OfficeResponse(BaseModel):
     id: int
@@ -41,6 +55,7 @@ class OfficeResponse(BaseModel):
     class Config:
         orm_mode = True
 
+
 class OfficeInfo(BaseModel):
     id: int
     name: str
@@ -48,5 +63,6 @@ class OfficeInfo(BaseModel):
     address: str
     rating: float
     capacity: int
+
     class Config:
         orm_mode = True
