@@ -87,7 +87,7 @@ class Order(Base):
     __tablename__ = "orders"
 
     id = Column(Integer, primary_key=True, index=True)
-    office_id = Column(Integer, ForeignKey("offices.id"), nullable=False)
+    office_id = Column(Integer, ForeignKey("offices.id"), nullable=True)
     client_id = Column(Integer, ForeignKey("clients.id"), nullable=False)
     manager_id = Column(Integer, ForeignKey("managers.id"), nullable=False)
     office_name = Column(String)

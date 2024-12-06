@@ -1,6 +1,6 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-from src.models import Office, ScheduleSlot, Feedback, Client
+from src.models import Office, ScheduleSlot, Feedback, Client, Order
 from src.schemas.office_schemas import Feedbacks, OfficeFeedbacks, OfficeResponse, OfficeRequest, OfficeUpdateRequest
 from src.schemas.schedule_schemas import OfficeSchedule
 
@@ -168,10 +168,6 @@ def update_office(db: Session, request: OfficeUpdateRequest):
         office.rating = request.rating
     if request.capacity is not None:
         office.capacity = request.capacity
-    if request.lat is not None:
-        office.lat = request.lat
-    if request.lng is not None:
-        office.lng = request.lng
 
     db.commit()
     db.refresh(office)
@@ -183,6 +179,7 @@ def delete_office(db: Session, office_id: int):
     office = db.query(Office).filter(Office.id == office_id).first()
     db.query(ScheduleSlot).filter(ScheduleSlot.office_id == office_id).delete()
     db.query(Feedback).filter(Feedback.office_id == office_id).delete()
+    db.query(Order).filter(Order.office_id == office_id).delete()
 
     db.delete(office)
     db.commit()

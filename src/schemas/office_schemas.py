@@ -36,8 +36,6 @@ class OfficeUpdateRequest(BaseModel):
     address: Optional[str] = None
     rating: Optional[float] = None
     capacity: Optional[int] = None
-    lat: Optional[float] = None
-    lng: Optional[float] = None
 
 
 class OfficeResponse(BaseModel):
