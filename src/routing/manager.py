@@ -5,7 +5,7 @@ from src.schemas.alternative_schemas import AlternativeResponseBase
 from src.schemas.office_schemas import OfficeRequest, OfficeUpdateRequest
 from src.schemas.order_schemas import OrderStatusRequest
 from src.schemas.schedule_schemas import ScheduleRequest
-from src.services.alternatives_service import get_all_alternatives_service, add_response_service
+from src.services.alternatives_service import get_all_alternatives_service, send_response_service
 from src.services.auth_service import authenticate_manager_email, authenticate_manager_phone
 from src.schemas.auth_schemas import SignInEmailRequest, SignInPhoneRequest
 from fastapi.responses import JSONResponse
@@ -84,6 +84,6 @@ def get_alternatives_requests(db: Session = Depends(get_db)):
 
 @router.post("/alternative/respond/{request_id}/")
 def respond_to_request(request: AlternativeResponseBase, db: Session = Depends(get_db)):
-    response = add_response_service(request, db)
+    response = send_response_service(request, db)
     return JSONResponse(content={"message": f"Response {response.id} created successfully at {response.created_at}"},
                         status_code=200)
