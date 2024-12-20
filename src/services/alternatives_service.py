@@ -5,10 +5,10 @@ from email.mime.text import MIMEText
 from sqlalchemy.orm import Session
 
 from src.repositories.alternatives import submit_alternatives, get_all_requests, toJsonSerializable, get_request_by_id, \
-    add_response
+    add_response, get_all_requests_by_filter
 from src.repositories.clients import get_client_by_id
 from src.repositories.managers import get_manager_by_id
-from src.schemas.alternative_schemas import AlternativeRequestBase, AlternativeResponseBase
+from src.schemas.alternative_schemas import AlternativeRequestBase, AlternativeResponseBase, AlternativeFilterRequest
 
 
 def submit_alternatives_service(request: AlternativeRequestBase, db: Session):
@@ -16,6 +16,9 @@ def submit_alternatives_service(request: AlternativeRequestBase, db: Session):
 
 def get_all_alternatives_service(db: Session):
     return toJsonSerializable(get_all_requests(db), db)
+
+def get_all_alternatives_by_filter(request: AlternativeFilterRequest, db: Session):
+    return toJsonSerializable(get_all_requests_by_filter(request, db), db)
 
 def send_response_service(response: AlternativeResponseBase, db: Session):
     response = add_response(db, response)

@@ -1,11 +1,12 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from src.database import get_db
-from src.schemas.alternative_schemas import AlternativeResponseBase
+from src.schemas.alternative_schemas import AlternativeResponseBase, AlternativeFilterRequest
 from src.schemas.office_schemas import OfficeRequest, OfficeUpdateRequest
 from src.schemas.order_schemas import OrderStatusRequest
 from src.schemas.schedule_schemas import ScheduleRequest
-from src.services.alternatives_service import get_all_alternatives_service, send_response_service
+from src.services.alternatives_service import get_all_alternatives_service, send_response_service, \
+    get_all_alternatives_by_filter
 from src.services.auth_service import authenticate_manager_email, authenticate_manager_phone
 from src.schemas.auth_schemas import SignInEmailRequest, SignInPhoneRequest
 from fastapi.responses import JSONResponse
@@ -48,7 +49,6 @@ def get_orders(manager_id: int, db: Session = Depends(get_db)):
 @router.put("/orders/{order_id}/status/")
 def update_order_status(request: OrderStatusRequest, db: Session = Depends(get_db)):
     update_order_status_service(db, request)
-
     return JSONResponse(content={"message": "Order status updated successfully"}, status_code=200)
 
 
@@ -79,6 +79,11 @@ def delete_office(id: int, db: Session = Depends(get_db)):
 @router.get("/alternative/requests/")
 def get_alternatives_requests(db: Session = Depends(get_db)):
     alternatives = get_all_alternatives_service(db)
+    return JSONResponse(content=alternatives, status_code=200)
+
+@router.post("/alternative/requests/")
+def get_alternatives_requests(request: AlternativeFilterRequest, db: Session = Depends(get_db)):
+    alternatives = get_all_alternatives_by_filter(request, db)
     return JSONResponse(content=alternatives, status_code=200)
 
 

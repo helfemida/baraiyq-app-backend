@@ -1,6 +1,9 @@
 from src.app import app
 from unittest.mock import MagicMock
 
+from tests.client_auth_tests import client
+
+
 def test_create_schedule_success(mocker):
     mock_create_service = mocker.patch('app.router.create_schedule_service', return_value=MagicMock(id=1))
     response = client.post("/create-schedule/1/", json={"start_time": "10:00", "end_time": "18:00"})
