@@ -59,17 +59,10 @@ def parse_func(duration: str):
 
 
 def check_office_availability(db: Session, office_id: int, duration: str):
-    start_datetime, end_datetime = parse_func(duration)
-
-    available_slots = db.query(ScheduleSlot).filter(
-        ScheduleSlot.office_id == office_id,
-        ScheduleSlot.is_booked == False,
-        cast(ScheduleSlot.day, Date) == start_datetime.date(),
-        cast(ScheduleSlot.start_time, Time) >= start_datetime.time(),
-        cast(ScheduleSlot.end_time, Time) <= end_datetime.time()
+    return db.query(Order).filter(
+        Order.office_id == office_id,
+        Order.status.in_(["Pending", "Booked"])
     ).all()
-
-    return available_slots
 
 
 def book_schedule_slot(db: Session, office_id: int, duration: str):
