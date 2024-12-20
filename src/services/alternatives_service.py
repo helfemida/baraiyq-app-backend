@@ -35,10 +35,6 @@ def send_response_service(response: AlternativeResponseBase, db: Session):
                     <p>In the hope that we've found the best solution for you.
                 """
     )
-
-    db.delete(request)
-    db.commit()
-
     return response
 
 def send_email(to_address: str, subject: str, content: str):
